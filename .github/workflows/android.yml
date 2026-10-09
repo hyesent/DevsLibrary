@@ -2,13 +2,18 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
-    name: Build Debug APK
+    name: Build DevsLibrary Debug APK
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     steps:
       - name: Checkout repository
@@ -17,60 +22,94 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: 22
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Verify project files
+        run: |
+          echo "Checking required project files..."
 
-      - name: Build web app
+          test -f package.json || {
+            echo "ERROR: package.json was not found."
+            exit 1
+          }
+
+          test -d android || {
+            echo "ERROR: Android project directory was not found."
+            exit 1
+          }
+
+          test -f android/gradlew || {
+            echo "ERROR: Android Gradle wrapper was not found."
+            exit 1
+          }
+
+      - name: Install Node dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            echo "No package-lock.json found; using npm install."
+            npm install
+          fi
+
+      - name: Build web application
         run: npm run build
-
-      - name: Sync Capacitor
-        run: npx cap sync android
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '21'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK components
-        shell: bash
         run: |
-          export ANDROID_SDK_ROOT="${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"
+          sdkmanager --install \
+            "platform-tools" \
+            "platforms;android-35" \
+            "build-tools;35.0.0"
 
-          if [ -x "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" ]; then
-            SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
-          elif [ -x "$ANDROID_SDK_ROOT/cmdline-tools/16.0/bin/sdkmanager" ]; then
-            SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/16.0/bin/sdkmanager"
-          else
-            echo "sdkmanager not found in Android SDK" >&2
-            exit 1
-          fi
+      - name: Accept Android SDK licenses
+        run: yes | sdkmanager --licenses || true
 
-          yes | "$SDKMANAGER" --licenses
-          "$SDKMANAGER" "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+      - name: Sync Capacitor
+        run: npx cap sync android
 
-      - name: Make gradlew executable
+      - name: Make Gradle wrapper executable
         run: chmod +x android/gradlew
 
       - name: Build Debug APK
         working-directory: android
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --no-daemon
 
-      - name: Rename APK
+      - name: Verify APK
+        run: |
+          APK="android/app/build/outputs/apk/debug/app-debug.apk"
+
+          if [ ! -f "$APK" ]; then
+            echo "ERROR: APK was not generated."
+            find android -type f -name "*.apk" -print
+            exit 1
+          fi
+
+          echo "APK successfully generated:"
+          ls -lh "$APK"
+
+      - name: Prepare APK artifact
         run: |
           mkdir -p build-artifacts
+
           VERSION=$(node -p "require('./package.json').version")
+
           cp android/app/build/outputs/apk/debug/app-debug.apk \
-             "build-artifacts/DevsLibrary-${VERSION}.apk"
+            "build-artifacts/DevsLibrary-${VERSION}-debug.apk"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: DevsLibrary
+          name: DevsLibrary-Android-APK
           path: build-artifacts/*.apk
+          if-no-files-found: error
+          retention-days: 14
