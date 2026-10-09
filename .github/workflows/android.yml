@@ -16,89 +16,104 @@ jobs:
     timeout-minutes: 45
 
     steps:
+      # 1. Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Configure Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
 
+      # 3. Verify required project files
       - name: Verify project files
+        shell: bash
         run: |
-          echo "Checking required project files..."
+          set -e
 
           test -f package.json || {
-            echo "ERROR: package.json was not found."
+            echo "::error::package.json not found."
             exit 1
           }
 
           test -d android || {
-            echo "ERROR: Android project directory was not found."
+            echo "::error::Android project directory not found."
             exit 1
           }
 
           test -f android/gradlew || {
-            echo "ERROR: Android Gradle wrapper was not found."
+            echo "::error::Gradle wrapper not found."
             exit 1
           }
 
-      - name: Install Node dependencies
+          echo "Required project files found."
+
+      # 4. Install JavaScript dependencies
+      - name: Install dependencies
         run: |
           if [ -f package-lock.json ]; then
             npm ci
           else
-            echo "No package-lock.json found; using npm install."
-            npm install
+            echo "::error::package-lock.json is missing. Commit your npm lockfile for reproducible builds."
+            exit 1
           fi
 
-      - name: Build web application
+      # 5. Build the web application
+      - name: Build web app
         run: npm run build
 
+      # 6. Configure Java
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
 
+      # 7. Configure Android SDK and install required packages
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: |
+            platform-tools
+            platforms;android-34
+            build-tools;34.0.0
 
-      - name: Install Android SDK components
-        run: |
-          sdkmanager --install \
-            "platform-tools" \
-            "platforms;android-35" \
-            "build-tools;35.0.0"
-
-      - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses || true
-
+      # 8. Sync the web application with Android
       - name: Sync Capacitor
         run: npx cap sync android
 
+      # 9. Make Gradle wrapper executable
       - name: Make Gradle wrapper executable
         run: chmod +x android/gradlew
 
+      # 10. Build the debug APK
       - name: Build Debug APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon
 
+      # 11. Verify the APK exists
       - name: Verify APK
+        shell: bash
         run: |
           APK="android/app/build/outputs/apk/debug/app-debug.apk"
 
           if [ ! -f "$APK" ]; then
-            echo "ERROR: APK was not generated."
-            find android -type f -name "*.apk" -print
+            echo "::error::Debug APK was not generated."
+            echo "Searching for generated APK files..."
+            find android -type f -name "*.apk" -print || true
             exit 1
           fi
 
-          echo "APK successfully generated:"
+          echo "APK generated successfully."
           ls -lh "$APK"
 
+      # 12. Rename and prepare the APK
       - name: Prepare APK artifact
+        shell: bash
         run: |
+          set -e
+
           mkdir -p build-artifacts
 
           VERSION=$(node -p "require('./package.json').version")
@@ -106,6 +121,10 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk \
             "build-artifacts/DevsLibrary-${VERSION}-debug.apk"
 
+          echo "Prepared APK:"
+          ls -lh build-artifacts/
+
+      # 13. Upload the APK for download
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
