@@ -16,6 +16,8 @@ import {
   unmarkLessonRead,
   isLessonRead,
   pushRecentRead,
+  getHighlights,
+  addHighlight,
 } from '../lib/storage.js';
 
 /* ------------------------------------------------------------ */
@@ -26,6 +28,64 @@ function slugify(text) {
     .toLowerCase()
     .replace(/[^\w]+/g, '-')
     .replace(/^-|-$/g, '');
+}
+
+function flatten(children) {
+  if (Array.isArray(children)) return children.map(flatten).join('');
+  if (typeof children === 'string') return children;
+  if (children && children.props && children.props.children) {
+    return flatten(children.props.children);
+  }
+  return '';
+}
+
+/* ------------------------------------------------------------ */
+/* Copy button — small icon that flips to a check on success    */
+/* ------------------------------------------------------------ */
+function CopyButton({ text }) {
+  const [copied, setCopied] = useState(false);
+
+  const onCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // fallback for insecure contexts
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch {}
+      document.body.removeChild(ta);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1400);
+  };
+
+  return (
+    <button
+      className={`code-copy ${copied ? 'is-copied' : ''}`}
+      onClick={onCopy}
+      aria-label={copied ? 'Copied' : 'Copy code'}
+      type="button"
+    >
+      {copied ? (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" strokeWidth="2.4"
+             strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="4 12 10 18 20 6" />
+        </svg>
+      ) : (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" strokeWidth="1.8"
+             strokeLinecap="round" strokeLinejoin="round">
+          <rect x="9" y="9" width="12" height="12" rx="2" />
+          <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+        </svg>
+      )}
+    </button>
+  );
 }
 
 /* ------------------------------------------------------------ */
@@ -47,27 +107,27 @@ function buildMarkdownComponents() {
 
     code({ inline, className, children, ...props }) {
       const lang = /language-(\w+)/.exec(className || '');
+      const raw = String(children).replace(/\n$/, '');
       if (inline) {
         return <code className="inline-code">{children}</code>;
       }
       return (
-        <pre className="code-block">
-          {lang && <span className="code-lang">{lang[1]}</span>}
-          <code className={className} {...props}>
-            {children}
-          </code>
-        </pre>
+        <div className="code-wrap">
+          <div className="code-head">
+            {lang ? <span className="code-lang">{lang[1]}</span> : <span />}
+            <CopyButton text={raw} />
+          </div>
+          <pre className="code-block">
+            <code className={className} {...props}>{children}</code>
+          </pre>
+        </div>
       );
     },
 
     a({ href, children, ...props }) {
       const external = /^https?:\/\//.test(href || '');
       if (external) {
-        return (
-          <a href={href} target="_blank" rel="noreferrer" {...props}>
-            {children}
-          </a>
-        );
+        return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>;
       }
       return <Link to={href} {...props}>{children}</Link>;
     },
@@ -82,17 +142,8 @@ function buildMarkdownComponents() {
   };
 }
 
-function flatten(children) {
-  if (Array.isArray(children)) return children.map(flatten).join('');
-  if (typeof children === 'string') return children;
-  if (children && children.props && children.props.children) {
-    return flatten(children.props.children);
-  }
-  return '';
-}
-
 /* ------------------------------------------------------------ */
-/* LESSON                                                       */
+/* Lesson                                                       */
 /* ------------------------------------------------------------ */
 
 export default function Lesson() {
@@ -104,13 +155,17 @@ export default function Lesson() {
   const { prev, next } = getLessonNeighbours(bookId, lessonId);
 
   const [read, setRead] = useState(() => isLessonRead(bookId, lessonId));
+  const [highlights, setHighlights] = useState(() => getHighlights({ bookId, lessonId }));
+  const [selection, setSelection] = useState(null); // { text, x, y }
+  const bodyRef = useRef(null);
   const restoredRef = useRef(false);
 
   const components = useMemo(buildMarkdownComponents, []);
 
-  /* ---------- on lesson change: reset state ---------- */
+  /* ---------- reset state on lesson change ---------- */
   useEffect(() => {
     setRead(isLessonRead(bookId, lessonId));
+    setHighlights(getHighlights({ bookId, lessonId }));
     restoredRef.current = false;
   }, [bookId, lessonId]);
 
@@ -121,7 +176,7 @@ export default function Lesson() {
     pushRecentRead({ bookId, lessonId });
   }, [bookId, lessonId, lesson]);
 
-  /* ---------- restore scroll position once ---------- */
+  /* ---------- restore scroll once ---------- */
   useEffect(() => {
     if (!lesson || restoredRef.current) return;
     const last = getLastRead();
@@ -136,7 +191,7 @@ export default function Lesson() {
     }
   }, [bookId, lessonId, lesson]);
 
-  /* ---------- throttle: save scroll position ---------- */
+  /* ---------- persist scroll ---------- */
   useEffect(() => {
     if (!lesson) return;
     let t = null;
@@ -159,8 +214,7 @@ export default function Lesson() {
       clearTimeout(t);
       t = setTimeout(() => {
         const nearBottom =
-          window.innerHeight + window.scrollY >=
-          document.body.scrollHeight - 120;
+          window.innerHeight + window.scrollY >= document.body.scrollHeight - 120;
         if (nearBottom) {
           markLessonRead(bookId, lessonId);
           setRead(true);
@@ -180,13 +234,64 @@ export default function Lesson() {
       const tag = (e.target && e.target.tagName) || '';
       if (tag === 'INPUT' || tag === 'TEXTAREA') return;
       if (e.key === 'ArrowRight' && next) navigate(`/book/${bookId}/${next.id}`);
-      if (e.key === 'ArrowLeft'  && prev) navigate(`/book/${bookId}/${prev.id}`);
+      if (e.key === 'ArrowLeft' && prev) navigate(`/book/${bookId}/${prev.id}`);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [bookId, prev, next, navigate]);
 
-  /* ---------- not found ---------- */
+  /* ---------- text selection → floating pill ---------- */
+  useEffect(() => {
+    if (!lesson) return;
+
+    const onMouseUp = () => {
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed) return setSelection(null);
+
+      const text = sel.toString().trim();
+      if (text.length < 3) return setSelection(null);
+
+      // must be inside the lesson body
+      const anchor = sel.anchorNode;
+      if (!anchor || !bodyRef.current || !bodyRef.current.contains(anchor)) {
+        return setSelection(null);
+      }
+
+      const range = sel.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+      setSelection({
+        text,
+        x: rect.left + rect.width / 2,
+        y: rect.top,
+      });
+    };
+
+    const onDown = (e) => {
+      // tap outside pill closes it
+      if (e.target.closest && e.target.closest('.selection-pill')) return;
+      setSelection(null);
+    };
+
+    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('touchend', onMouseUp);
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('touchstart', onDown, { passive: true });
+    return () => {
+      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('touchend', onMouseUp);
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('touchstart', onDown);
+    };
+  }, [lesson]);
+
+  const saveHighlight = () => {
+    if (!selection) return;
+    addHighlight({ bookId, lessonId, text: selection.text });
+    setHighlights(getHighlights({ bookId, lessonId }));
+    setSelection(null);
+    window.getSelection()?.removeAllRanges();
+  };
+
   if (!book || !lesson) {
     return (
       <div className="page">
@@ -200,31 +305,39 @@ export default function Lesson() {
 
   return (
     <article className="lesson">
-      {/* ------------------------- PROGRESS ----------------------- */}
       <ProgressBar compute={totalHeight} />
 
-      {/* ------------------------- META --------------------------- */}
       <div className="lesson-meta">
         <span className="muted small">~{readTime} min read</span>
         <button
           className={`mark-btn ${read ? 'is-read' : ''}`}
           onClick={() => {
             if (read) { unmarkLessonRead(bookId, lessonId); setRead(false); }
-            else      { markLessonRead(bookId, lessonId);   setRead(true);  }
+            else { markLessonRead(bookId, lessonId); setRead(true); }
           }}
         >
           {read ? 'Read' : 'Mark as read'}
         </button>
       </div>
 
-      {/* ------------------------- BODY --------------------------- */}
-      <div className="lesson-body">
+      <div className="lesson-body" ref={bodyRef}>
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
           {lesson.body}
         </ReactMarkdown>
       </div>
 
-      {/* ------------------------- PREV / NEXT -------------------- */}
+      {/* floating selection pill */}
+      {selection && (
+        <button
+          className="selection-pill"
+          style={{ left: selection.x, top: selection.y }}
+          onClick={saveHighlight}
+          type="button"
+        >
+          Highlight
+        </button>
+      )}
+
       <nav className="prevnext">
         {prev ? (
           <Link to={`/book/${bookId}/${prev.id}`} className="pn-btn">
@@ -245,7 +358,7 @@ export default function Lesson() {
 }
 
 /* ------------------------------------------------------------ */
-/* PROGRESS BAR — thin line at top of lesson                    */
+/* Progress bar                                                 */
 /* ------------------------------------------------------------ */
 
 function ProgressBar({ compute }) {
@@ -272,4 +385,4 @@ function ProgressBar({ compute }) {
       <div className="progress-fill" style={{ width: `${pct * 100}%` }} />
     </div>
   );
-}
+    }
