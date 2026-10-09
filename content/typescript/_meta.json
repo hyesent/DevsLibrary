@@ -1,0 +1,26 @@
+{
+  "title": "TypeScript",
+  "tagline": "Make JavaScript easier to reason about with types",
+  "summary": "TypeScript adds a powerful static type system on top of JavaScript. This book takes you from type annotations and inference through unions, generics, narrowing, advanced type manipulation, modules, declaration files, DOM and Node.js typing, React, API boundaries, testing, and large-scale architecture. By the end you'll understand how TypeScript helps you design and reason about JavaScript systems without confusing compile-time types with runtime behavior.",
+  "topics": [
+    "TypeScript and JavaScript",
+    "Types and inference",
+    "Objects and functions",
+    "Unions and intersections",
+    "Narrowing",
+    "Generics",
+    "Advanced types",
+    "Utility types",
+    "Classes and structural typing",
+    "Modules and declarations",
+    "DOM and browser APIs",
+    "Runtime data validation",
+    "React with TypeScript",
+    "Node.js and backend typing",
+    "Configuration and compiler architecture",
+    "Testing and build pipelines",
+    "Large-scale type architecture"
+  ],
+  "icon": "book",
+  "order": 5
+}

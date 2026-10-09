@@ -1,0 +1,133 @@
+{
+  "id": "cloud_deployment",
+  "title": "Cloud & Deployment",
+  "tagline": "Ship, secure, observe, and recover real applications in the cloud",
+  "summary": "A practical textbook on cloud service models, shared responsibility, regions and resilience, compute choices, DNS and HTTPS, environment configuration, release artifacts, frontend delivery, reverse proxies, managed data services, CI/CD, safe rollouts, infrastructure as code, observability, reliability, disaster recovery, cost management, supply-chain security, networking, container operations, background jobs, migrations, incident response and a production deployment capstone. Lessons emphasize explicit assumptions, failure modes, operational ownership and tested recovery rather than provider-specific magic commands.",
+  "topics": [
+    "Cloud Computing: The Actual Trade-offs",
+    "Shared Responsibility and Cloud Account Safety",
+    "Regions, Availability Zones, and Resilience",
+    "Compute Choices: VM, Containers, PaaS, and Functions",
+    "DNS, Domains, TLS, and HTTPS",
+    "Environments, Configuration, and Secrets",
+    "Deployment Artifacts and Reproducible Releases",
+    "Static Sites, Frontends, and Edge Delivery",
+    "Application Servers, Reverse Proxies, and Load Balancers",
+    "Managed Databases, Storage, and Data Durability",
+    "CI/CD Fundamentals and Pipeline Design",
+    "Safe Deployments: Rolling, Blue-Green, and Canary",
+    "Infrastructure as Code and Drift Control",
+    "Observability, Logs, Metrics, and Traces",
+    "Reliability: Timeouts, Retries, Queues, and Limits",
+    "Backups, Disaster Recovery, and Restore Tests",
+    "Cost Management and Capacity Planning",
+    "Deployment Security and Supply-Chain Hygiene",
+    "Networking, Private Services, and Egress",
+    "Containers in Production and Orchestration Basics",
+    "Background Jobs, Schedulers, and Event Delivery",
+    "Migration Planning and Platform Portability",
+    "Incident Response and Production Runbooks",
+    "Capstone: Deploy a Production-Ready Library API"
+  ],
+  "icon": "cloud",
+  "order": 23,
+  "lesson_count": 24,
+  "chapters": [
+    {
+      "title": "Cloud Computing: The Actual Trade-offs",
+      "file": "01-cloud-computing-the-actual-trade-offs.md"
+    },
+    {
+      "title": "Shared Responsibility and Cloud Account Safety",
+      "file": "02-shared-responsibility-and-cloud-account-safety.md"
+    },
+    {
+      "title": "Regions, Availability Zones, and Resilience",
+      "file": "03-regions-availability-zones-and-resilience.md"
+    },
+    {
+      "title": "Compute Choices: VM, Containers, PaaS, and Functions",
+      "file": "04-compute-choices-vm-containers-paas-and-functions.md"
+    },
+    {
+      "title": "DNS, Domains, TLS, and HTTPS",
+      "file": "05-dns-domains-tls-and-https.md"
+    },
+    {
+      "title": "Environments, Configuration, and Secrets",
+      "file": "06-environments-configuration-and-secrets.md"
+    },
+    {
+      "title": "Deployment Artifacts and Reproducible Releases",
+      "file": "07-deployment-artifacts-and-reproducible-releases.md"
+    },
+    {
+      "title": "Static Sites, Frontends, and Edge Delivery",
+      "file": "08-static-sites-frontends-and-edge-delivery.md"
+    },
+    {
+      "title": "Application Servers, Reverse Proxies, and Load Balancers",
+      "file": "09-application-servers-reverse-proxies-and-load-balancers.md"
+    },
+    {
+      "title": "Managed Databases, Storage, and Data Durability",
+      "file": "10-managed-databases-storage-and-data-durability.md"
+    },
+    {
+      "title": "CI/CD Fundamentals and Pipeline Design",
+      "file": "11-ci-cd-fundamentals-and-pipeline-design.md"
+    },
+    {
+      "title": "Safe Deployments: Rolling, Blue-Green, and Canary",
+      "file": "12-safe-deployments-rolling-blue-green-and-canary.md"
+    },
+    {
+      "title": "Infrastructure as Code and Drift Control",
+      "file": "13-infrastructure-as-code-and-drift-control.md"
+    },
+    {
+      "title": "Observability, Logs, Metrics, and Traces",
+      "file": "14-observability-logs-metrics-and-traces.md"
+    },
+    {
+      "title": "Reliability: Timeouts, Retries, Queues, and Limits",
+      "file": "15-reliability-timeouts-retries-queues-and-limits.md"
+    },
+    {
+      "title": "Backups, Disaster Recovery, and Restore Tests",
+      "file": "16-backups-disaster-recovery-and-restore-tests.md"
+    },
+    {
+      "title": "Cost Management and Capacity Planning",
+      "file": "17-cost-management-and-capacity-planning.md"
+    },
+    {
+      "title": "Deployment Security and Supply-Chain Hygiene",
+      "file": "18-deployment-security-and-supply-chain-hygiene.md"
+    },
+    {
+      "title": "Networking, Private Services, and Egress",
+      "file": "19-networking-private-services-and-egress.md"
+    },
+    {
+      "title": "Containers in Production and Orchestration Basics",
+      "file": "20-containers-in-production-and-orchestration-basics.md"
+    },
+    {
+      "title": "Background Jobs, Schedulers, and Event Delivery",
+      "file": "21-background-jobs-schedulers-and-event-delivery.md"
+    },
+    {
+      "title": "Migration Planning and Platform Portability",
+      "file": "22-migration-planning-and-platform-portability.md"
+    },
+    {
+      "title": "Incident Response and Production Runbooks",
+      "file": "23-incident-response-and-production-runbooks.md"
+    },
+    {
+      "title": "Capstone: Deploy a Production-Ready Library API",
+      "file": "24-capstone-deploy-a-production-ready-library-api.md"
+    }
+  ]
+}

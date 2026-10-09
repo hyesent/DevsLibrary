@@ -1,0 +1,28 @@
+{
+  "title": "Python",
+  "tagline": "Understand Python from object model to production systems",
+  "summary": "A concept-first Python book that explains how Python evaluates code, represents data, manages state, handles failure, composes modules, performs I/O, and supports reliable production software. It covers core language semantics, data structures, functions, object-oriented design, typing, testing, concurrency, networking, databases, packaging, security, performance, and operational architecture.",
+  "topics": [
+    "Execution model",
+    "Objects and references",
+    "Control flow",
+    "Core data structures",
+    "Functions and scope",
+    "Modules and packages",
+    "Exceptions",
+    "Files and serialization",
+    "Iterators and generators",
+    "Object-oriented design",
+    "Protocols and typing",
+    "Testing and debugging",
+    "Concurrency and async I/O",
+    "Networking and APIs",
+    "Databases",
+    "Security",
+    "Performance and memory",
+    "Packaging and deployment",
+    "Production architecture"
+  ],
+  "icon": "book",
+  "order": 8
+}

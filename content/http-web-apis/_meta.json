@@ -1,0 +1,160 @@
+{
+  "id": "http-web-apis",
+  "title": "HTTP & Web APIs",
+  "description": "A deep practical textbook on HTTP semantics, resource and schema design, authentication, browser security, resilience, API security, documentation, testing, deployment, and production operations.",
+  "category": "Web Development",
+  "difficulty": "Beginner to Advanced",
+  "lessonCount": 30,
+  "lessons": [
+    {
+      "order": 1,
+      "file": "001-the-web-s-request-response-model.md",
+      "title": "The Web's Request-Response Model"
+    },
+    {
+      "order": 2,
+      "file": "002-http-message-anatomy-methods-targets-headers-and-bodies.md",
+      "title": "HTTP Message Anatomy: Methods, Targets, Headers, and Bodies"
+    },
+    {
+      "order": 3,
+      "file": "003-methods-and-their-semantics-safety-and-idempotency.md",
+      "title": "Methods and Their Semantics: Safety and Idempotency"
+    },
+    {
+      "order": 4,
+      "file": "004-status-codes-success-redirects-client-errors-and-server-errors.md",
+      "title": "Status Codes: Success, Redirects, Client Errors, and Server Errors"
+    },
+    {
+      "order": 5,
+      "file": "005-headers-deep-dive-content-negotiation-caching-and-security.md",
+      "title": "Headers Deep Dive: Content Negotiation, Caching, and Security"
+    },
+    {
+      "order": 6,
+      "file": "006-json-syntax-data-modeling-and-interoperability.md",
+      "title": "JSON: Syntax, Data Modeling, and Interoperability"
+    },
+    {
+      "order": 7,
+      "file": "007-resource-modeling-urls-and-api-naming.md",
+      "title": "Resource Modeling, URLs, and API Naming"
+    },
+    {
+      "order": 8,
+      "file": "008-request-and-response-schemas-validation-and-error-contracts.md",
+      "title": "Request and Response Schemas, Validation, and Error Contracts"
+    },
+    {
+      "order": 9,
+      "file": "009-authentication-vs-authorization.md",
+      "title": "Authentication vs Authorization"
+    },
+    {
+      "order": 10,
+      "file": "010-cookies-sessions-cors-and-browser-security-boundaries.md",
+      "title": "Cookies, Sessions, CORS, and Browser Security Boundaries"
+    },
+    {
+      "order": 11,
+      "file": "011-tls-certificates-dns-and-network-failure-modes.md",
+      "title": "TLS, Certificates, DNS, and Network Failure Modes"
+    },
+    {
+      "order": 12,
+      "file": "012-pagination-filtering-sorting-and-search.md",
+      "title": "Pagination, Filtering, Sorting, and Search"
+    },
+    {
+      "order": 13,
+      "file": "013-caching-conditional-requests-and-cache-invalidation.md",
+      "title": "Caching, Conditional Requests, and Cache Invalidation"
+    },
+    {
+      "order": 14,
+      "file": "014-rate-limiting-quotas-and-abuse-prevention.md",
+      "title": "Rate Limiting, Quotas, and Abuse Prevention"
+    },
+    {
+      "order": 15,
+      "file": "015-idempotency-keys-retries-timeouts-and-exactly-once-myths.md",
+      "title": "Idempotency Keys, Retries, Timeouts, and Exactly-Once Myths"
+    },
+    {
+      "order": 16,
+      "file": "016-concurrency-optimistic-locking-and-conflict-responses.md",
+      "title": "Concurrency, Optimistic Locking, and Conflict Responses"
+    },
+    {
+      "order": 17,
+      "file": "017-api-versioning-compatibility-and-deprecation.md",
+      "title": "API Versioning, Compatibility, and Deprecation"
+    },
+    {
+      "order": 18,
+      "file": "018-openapi-schemas-and-contract-first-design.md",
+      "title": "OpenAPI, Schemas, and Contract-First Design"
+    },
+    {
+      "order": 19,
+      "file": "019-webhooks-signing-delivery-retries-and-replay-protection.md",
+      "title": "Webhooks: Signing, Delivery, Retries, and Replay Protection"
+    },
+    {
+      "order": 20,
+      "file": "020-file-uploads-downloads-and-streaming-apis.md",
+      "title": "File Uploads, Downloads, and Streaming APIs"
+    },
+    {
+      "order": 21,
+      "file": "021-graphql-rpc-and-alternative-api-styles.md",
+      "title": "GraphQL, RPC, and Alternative API Styles"
+    },
+    {
+      "order": 22,
+      "file": "022-websockets-server-sent-events-and-long-lived-connections.md",
+      "title": "WebSockets, Server-Sent Events, and Long-Lived Connections"
+    },
+    {
+      "order": 23,
+      "file": "023-observability-and-correlation-across-api-boundaries.md",
+      "title": "Observability and Correlation Across API Boundaries"
+    },
+    {
+      "order": 24,
+      "file": "024-testing-apis-unit-integration-contract-and-end-to-end.md",
+      "title": "Testing APIs: Unit, Integration, Contract, and End-to-End"
+    },
+    {
+      "order": 25,
+      "file": "025-performance-capacity-and-resilience-engineering.md",
+      "title": "Performance, Capacity, and Resilience Engineering"
+    },
+    {
+      "order": 26,
+      "file": "026-api-security-review-and-threat-modeling.md",
+      "title": "API Security Review and Threat Modeling"
+    },
+    {
+      "order": 27,
+      "file": "027-deployment-gateways-environments-and-safe-rollouts.md",
+      "title": "Deployment, Gateways, Environments, and Safe Rollouts"
+    },
+    {
+      "order": 28,
+      "file": "028-documentation-developer-experience-and-client-sdks.md",
+      "title": "Documentation, Developer Experience, and Client SDKs"
+    },
+    {
+      "order": 29,
+      "file": "029-capstone-design-and-specify-a-production-ready-task-api.md",
+      "title": "Capstone: Design and Specify a Production-Ready Task API"
+    },
+    {
+      "order": 30,
+      "file": "030-final-synthesis-design-contracts-for-unreliable-networks.md",
+      "title": "Final Synthesis: Design Contracts for Unreliable Networks"
+    }
+  ]
+}

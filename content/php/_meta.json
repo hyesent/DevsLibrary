@@ -1,0 +1,235 @@
+{
+  "id": "php",
+  "title": "PHP",
+  "description": "A comprehensive, practical PHP textbook covering language fundamentals, modern OOP, Composer, HTTP, databases, security, architecture, testing, deployment, operations, and a capstone.",
+  "category": "Programming Languages",
+  "difficulty": "Beginner to Advanced",
+  "lessonCount": 45,
+  "lessons": [
+    {
+      "order": 1,
+      "file": "001-the-php-mental-model-what-php-is-and-where-it-runs.md",
+      "title": "The PHP Mental Model: What PHP Is and Where It Runs"
+    },
+    {
+      "order": 2,
+      "file": "002-installing-php-cli-workflows-configuration-and-versioning.md",
+      "title": "Installing PHP, CLI Workflows, Configuration, and Versioning"
+    },
+    {
+      "order": 3,
+      "file": "003-php-syntax-tags-statements-comments-and-strict-types.md",
+      "title": "PHP Syntax, Tags, Statements, Comments, and Strict Types"
+    },
+    {
+      "order": 4,
+      "file": "004-variables-constants-scope-and-naming.md",
+      "title": "Variables, Constants, Scope, and Naming"
+    },
+    {
+      "order": 5,
+      "file": "005-types-type-juggling-null-and-value-semantics.md",
+      "title": "Types, Type Juggling, Null, and Value Semantics"
+    },
+    {
+      "order": 6,
+      "file": "006-strings-unicode-escaping-and-text-safety.md",
+      "title": "Strings, Unicode, Escaping, and Text Safety"
+    },
+    {
+      "order": 7,
+      "file": "007-operators-precedence-and-expressions.md",
+      "title": "Operators, Precedence, and Expressions"
+    },
+    {
+      "order": 8,
+      "file": "008-control-flow-conditions-match-loops-and-early-returns.md",
+      "title": "Control Flow: Conditions, Match, Loops, and Early Returns"
+    },
+    {
+      "order": 9,
+      "file": "009-arrays-indexed-associative-multidimensional-and-array-functions.md",
+      "title": "Arrays: Indexed, Associative, Multidimensional, and Array Functions"
+    },
+    {
+      "order": 10,
+      "file": "010-functions-parameters-return-types-and-first-class-callables.md",
+      "title": "Functions, Parameters, Return Types, and First-Class Callables"
+    },
+    {
+      "order": 11,
+      "file": "011-closures-arrow-functions-and-functional-patterns.md",
+      "title": "Closures, Arrow Functions, and Functional Patterns"
+    },
+    {
+      "order": 12,
+      "file": "012-errors-exceptions-error-reporting-and-recovery.md",
+      "title": "Errors, Exceptions, Error Reporting, and Recovery"
+    },
+    {
+      "order": 13,
+      "file": "013-object-oriented-php-classes-objects-properties-and-methods.md",
+      "title": "Object-Oriented PHP: Classes, Objects, Properties, and Methods"
+    },
+    {
+      "order": 14,
+      "file": "014-inheritance-interfaces-traits-and-composition.md",
+      "title": "Inheritance, Interfaces, Traits, and Composition"
+    },
+    {
+      "order": 15,
+      "file": "015-namespaces-autoloading-composer-and-psr-conventions.md",
+      "title": "Namespaces, Autoloading, Composer, and PSR Conventions"
+    },
+    {
+      "order": 16,
+      "file": "016-enumerations-readonly-data-value-objects-and-dtos.md",
+      "title": "Enumerations, Readonly Data, Value Objects, and DTOs"
+    },
+    {
+      "order": 17,
+      "file": "017-date-and-time-time-zones-instants-and-calendar-rules.md",
+      "title": "Date and Time: Time Zones, Instants, and Calendar Rules"
+    },
+    {
+      "order": 18,
+      "file": "018-files-directories-streams-and-upload-handling.md",
+      "title": "Files, Directories, Streams, and Upload Handling"
+    },
+    {
+      "order": 19,
+      "file": "019-http-fundamentals-for-php-developers.md",
+      "title": "HTTP Fundamentals for PHP Developers"
+    },
+    {
+      "order": 20,
+      "file": "020-superglobals-request-parsing-validation-and-normalization.md",
+      "title": "Superglobals, Request Parsing, Validation, and Normalization"
+    },
+    {
+      "order": 21,
+      "file": "021-html-forms-post-redirect-get-and-file-uploads.md",
+      "title": "HTML Forms, POST/Redirect/GET, and File Uploads"
+    },
+    {
+      "order": 22,
+      "file": "022-sessions-cookies-authentication-and-account-lifecycle.md",
+      "title": "Sessions, Cookies, Authentication, and Account Lifecycle"
+    },
+    {
+      "order": 23,
+      "file": "023-database-access-with-pdo-and-prepared-statements.md",
+      "title": "Database Access with PDO and Prepared Statements"
+    },
+    {
+      "order": 24,
+      "file": "024-sql-transactions-concurrency-and-data-integrity.md",
+      "title": "SQL Transactions, Concurrency, and Data Integrity"
+    },
+    {
+      "order": 25,
+      "file": "025-security-i-xss-csrf-sql-injection-and-output-contexts.md",
+      "title": "Security I: XSS, CSRF, SQL Injection, and Output Contexts"
+    },
+    {
+      "order": 26,
+      "file": "026-security-ii-passwords-secrets-cryptography-and-secure-defaults.md",
+      "title": "Security II: Passwords, Secrets, Cryptography, and Secure Defaults"
+    },
+    {
+      "order": 27,
+      "file": "027-security-iii-ssrf-path-traversal-deserialization-and-abuse-controls.md",
+      "title": "Security III: SSRF, Path Traversal, Deserialization, and Abuse Controls"
+    },
+    {
+      "order": 28,
+      "file": "028-application-architecture-routes-controllers-services-and-repositories.md",
+      "title": "Application Architecture: Routes, Controllers, Services, and Repositories"
+    },
+    {
+      "order": 29,
+      "file": "029-routing-middleware-front-controllers-and-psr-interfaces.md",
+      "title": "Routing, Middleware, Front Controllers, and PSR Interfaces"
+    },
+    {
+      "order": 30,
+      "file": "030-templates-layouts-components-and-safe-server-rendering.md",
+      "title": "Templates, Layouts, Components, and Safe Server Rendering"
+    },
+    {
+      "order": 31,
+      "file": "031-json-apis-encoding-status-codes-pagination-and-errors.md",
+      "title": "JSON APIs: Encoding, Status Codes, Pagination, and Errors"
+    },
+    {
+      "order": 32,
+      "file": "032-external-http-apis-timeouts-retries-and-resilience.md",
+      "title": "External HTTP APIs, Timeouts, Retries, and Resilience"
+    },
+    {
+      "order": 33,
+      "file": "033-email-queues-background-jobs-and-the-outbox-pattern.md",
+      "title": "Email, Queues, Background Jobs, and the Outbox Pattern"
+    },
+    {
+      "order": 34,
+      "file": "034-caching-sessions-and-redis-integration-concepts.md",
+      "title": "Caching, Sessions, and Redis Integration Concepts"
+    },
+    {
+      "order": 35,
+      "file": "035-testing-php-unit-integration-feature-and-end-to-end.md",
+      "title": "Testing PHP: Unit, Integration, Feature, and End-to-End"
+    },
+    {
+      "order": 36,
+      "file": "036-static-analysis-formatting-refactoring-and-code-review.md",
+      "title": "Static Analysis, Formatting, Refactoring, and Code Review"
+    },
+    {
+      "order": 37,
+      "file": "037-performance-profiling-memory-and-opcache.md",
+      "title": "Performance, Profiling, Memory, and OPcache"
+    },
+    {
+      "order": 38,
+      "file": "038-logging-monitoring-tracing-and-operational-diagnostics.md",
+      "title": "Logging, Monitoring, Tracing, and Operational Diagnostics"
+    },
+    {
+      "order": 39,
+      "file": "039-deployment-php-fpm-web-servers-containers-and-configuration.md",
+      "title": "Deployment: PHP-FPM, Web Servers, Containers, and Configuration"
+    },
+    {
+      "order": 40,
+      "file": "040-compatibility-deprecations-dependency-audits-and-upgrades.md",
+      "title": "Compatibility, Deprecations, Dependency Audits, and Upgrades"
+    },
+    {
+      "order": 41,
+      "file": "041-internationalization-localization-and-accessibility.md",
+      "title": "Internationalization, Localization, and Accessibility"
+    },
+    {
+      "order": 42,
+      "file": "042-php-cli-automation-workers-and-command-line-applications.md",
+      "title": "PHP CLI, Automation, Workers, and Command-Line Applications"
+    },
+    {
+      "order": 43,
+      "file": "043-package-design-public-apis-and-semantic-versioning.md",
+      "title": "Package Design, Public APIs, and Semantic Versioning"
+    },
+    {
+      "order": 44,
+      "file": "044-capstone-build-a-secure-task-management-application.md",
+      "title": "Capstone: Build a Secure Task-Management Application"
+    },
+    {
+      "order": 45,
+      "file": "045-final-synthesis-think-in-boundaries-contracts-and-failure-modes.md",
+      "title": "Final Synthesis: Think in Boundaries, Contracts, and Failure Modes"
+    }
+  ]
+}

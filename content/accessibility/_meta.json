@@ -1,0 +1,177 @@
+{
+  "id": "devslibrary_accessibility",
+  "title": "Web Accessibility: A Complete Practical Textbook",
+  "slug": "accessibility",
+  "version": "1.0.0",
+  "description": "A practical, standards-informed textbook for building, testing, and maintaining accessible web experiences.",
+  "audience": "Beginner to advanced web developers, designers, testers, and technical leads",
+  "lesson_count": 38,
+  "language": "en",
+  "prerequisites": [
+    "Basic HTML",
+    "Basic CSS",
+    "JavaScript fundamentals are helpful but not required"
+  ],
+  "learning_outcomes": [
+    "Explain accessibility, disability models, assistive technology, and inclusive design.",
+    "Build semantic, keyboard-operable interfaces with meaningful focus behavior.",
+    "Create accessible forms, navigation, dialogs, tables, media, and dynamic updates.",
+    "Use WCAG principles and success criteria as a practical engineering framework.",
+    "Test with automated tools, keyboard-only workflows, screen readers, zoom, and manual review.",
+    "Plan remediation, document exceptions, and embed accessibility into a team's delivery process."
+  ],
+  "chapters": [
+    {
+      "file": "01-accessibility-foundations.md",
+      "title": "Accessibility Foundations"
+    },
+    {
+      "file": "02-inclusive-design-and-disability-models.md",
+      "title": "Inclusive Design and Disability Models"
+    },
+    {
+      "file": "03-wcag-map-and-conformance.md",
+      "title": "WCAG: Structure, Levels, and Conformance"
+    },
+    {
+      "file": "04-pour-principles.md",
+      "title": "The POUR Principles"
+    },
+    {
+      "file": "05-semantic-html.md",
+      "title": "Semantic HTML as the Accessibility Foundation"
+    },
+    {
+      "file": "06-accessible-names-labels-and-descriptions.md",
+      "title": "Accessible Names, Labels, and Descriptions"
+    },
+    {
+      "file": "07-images-icons-and-text-alternatives.md",
+      "title": "Images, Icons, and Text Alternatives"
+    },
+    {
+      "file": "08-color-contrast-and-noncolor-cues.md",
+      "title": "Color, Contrast, and Non-Color Cues"
+    },
+    {
+      "file": "09-typography-zoom-and-reflow.md",
+      "title": "Typography, Zoom, Reflow, and Text Spacing"
+    },
+    {
+      "file": "10-keyboard-access-and-focus.md",
+      "title": "Keyboard Access and Focus Management"
+    },
+    {
+      "file": "11-focus-order-visible-focus-and-skip-links.md",
+      "title": "Focus Order, Visible Focus, and Skip Links"
+    },
+    {
+      "file": "12-forms-labels-instructions-and-inputs.md",
+      "title": "Accessible Forms: Labels, Instructions, and Input Types"
+    },
+    {
+      "file": "13-validation-errors-and-error-recovery.md",
+      "title": "Validation, Errors, and Recovery"
+    },
+    {
+      "file": "14-links-buttons-and-action-language.md",
+      "title": "Links, Buttons, and Clear Action Language"
+    },
+    {
+      "file": "15-navigation-landmarks-and-page-structure.md",
+      "title": "Navigation, Landmarks, and Page Structure"
+    },
+    {
+      "file": "16-tables-and-data-visualization.md",
+      "title": "Accessible Data Tables and Visualizations"
+    },
+    {
+      "file": "17-audio-video-captions-and-transcripts.md",
+      "title": "Audio, Video, Captions, and Transcripts"
+    },
+    {
+      "file": "18-motion-animation-and-seizure-safety.md",
+      "title": "Motion, Animation, and Seizure Safety"
+    },
+    {
+      "file": "19-language-readability-and-cognitive-accessibility.md",
+      "title": "Language, Readability, and Cognitive Accessibility"
+    },
+    {
+      "file": "20-responsive-design-and-mobile-accessibility.md",
+      "title": "Responsive and Mobile Accessibility"
+    },
+    {
+      "file": "21-dynamic-content-live-regions-and-spas.md",
+      "title": "Dynamic Content, Live Regions, and Single-Page Apps"
+    },
+    {
+      "file": "22-dialogs-modals-and-popovers.md",
+      "title": "Dialogs, Modals, and Popovers"
+    },
+    {
+      "file": "23-menus-tabs-accordions-and-composite-widgets.md",
+      "title": "Menus, Tabs, Accordions, and Composite Widgets"
+    },
+    {
+      "file": "24-aria-principles-and-common-antipatterns.md",
+      "title": "ARIA: Principles and Common Antipatterns"
+    },
+    {
+      "file": "25-screen-readers-and-assistive-technology.md",
+      "title": "Screen Readers and Assistive Technology"
+    },
+    {
+      "file": "26-accessible-authentication-and-security-flows.md",
+      "title": "Accessible Authentication and Security Flows"
+    },
+    {
+      "file": "27-accessibility-testing-strategy.md",
+      "title": "Build an Accessibility Testing Strategy"
+    },
+    {
+      "file": "28-automated-audits-and-tool-limitations.md",
+      "title": "Automated Audits and Their Limitations"
+    },
+    {
+      "file": "29-manual-audit-workflow-and-defect-triage.md",
+      "title": "Manual Audits, Evidence, and Defect Triage"
+    },
+    {
+      "file": "30-accessible-component-design-systems.md",
+      "title": "Accessible Component Libraries and Design Systems"
+    },
+    {
+      "file": "31-accessibility-in-css-and-javascript.md",
+      "title": "Accessibility in CSS and JavaScript"
+    },
+    {
+      "file": "32-accessibility-in-content-and-documentation.md",
+      "title": "Accessible Content, Help, and Documentation"
+    },
+    {
+      "file": "33-third-party-widgets-and-embedded-content.md",
+      "title": "Third-Party Widgets and Embedded Content"
+    },
+    {
+      "file": "34-accessibility-for-interaction-patterns-and-edge-states.md",
+      "title": "Interaction Patterns and Edge States"
+    },
+    {
+      "file": "35-accessibility-planning-governance-and-legal-awareness.md",
+      "title": "Planning, Governance, and Legal Awareness"
+    },
+    {
+      "file": "36-capstone-audit-and-remediation-project.md",
+      "title": "Capstone: Audit, Repair, and Verify a Real Interface"
+    },
+    {
+      "file": "37-accessibility-review-checklists.md",
+      "title": "Practical Accessibility Review Checklists"
+    },
+    {
+      "file": "38-glossary-and-learning-resources.md",
+      "title": "Glossary and Further Learning"
+    }
+  ]
+}

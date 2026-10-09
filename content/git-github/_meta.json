@@ -1,0 +1,29 @@
+{
+  "title": "Git & GitHub",
+  "tagline": "Understand version history, collaboration, and software change",
+  "summary": "Git is a distributed version-control system for recording, comparing, branching, merging, and recovering changes in a codebase. GitHub builds collaboration, review, automation, and project workflows around Git. This book takes you from snapshots, commits, and the staging area through branches, merges, rebases, remotes, pull requests, conflicts, recovery, release workflows, CI/CD, security, and team architecture. By the end you'll understand not just which Git command to type, but what Git is actually storing and how professional teams use version control to control change.",
+  "topics": [
+    "Version control mental model",
+    "Repositories and commits",
+    "Working tree and staging area",
+    "History and inspection",
+    "Branches and references",
+    "Merging and conflicts",
+    "Rebase and history rewriting",
+    "Remote repositories",
+    "GitHub workflows",
+    "Pull requests and code review",
+    "Tags and releases",
+    "Undo and recovery",
+    "Cherry-picking and advanced history",
+    "Git internals",
+    "Team workflows",
+    "CI/CD",
+    "GitHub Actions",
+    "Security and secrets",
+    "Large repositories",
+    "Professional Git architecture"
+  ],
+  "icon": "book",
+  "order": 9
+}

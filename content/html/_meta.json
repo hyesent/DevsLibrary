@@ -1,0 +1,18 @@
+{
+  "title": "HTML",
+  "tagline": "Structure and meaning for the web",
+  "summary": "HTML is the language every website is built on. This book takes you from what a tag actually is, all the way through forms, tables, semantic structure, accessibility, and modern advanced elements. By the end you'll be able to structure any page correctly — and understand why every choice you make matters.",
+  "topics": [
+    "Document structure",
+    "Text and headings",
+    "Links and images",
+    "Forms and validation",
+    "Semantic elements",
+    "Tables",
+    "Accessibility",
+    "Global attributes",
+    "Modern HTML5 elements"
+  ],
+  "icon": "book",
+  "order": 1
+}

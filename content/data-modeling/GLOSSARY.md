@@ -1,0 +1,22 @@
+# Data Modeling Glossary
+
+- **Attribute:** a property of an entity or relationship.
+- **BCNF:** Boyce–Codd Normal Form, a normal form stronger than 3NF.
+- **Candidate key:** a minimal set of attributes that uniquely identifies a row.
+- **Cardinality:** the allowed number of related instances.
+- **Constraint:** a rule the database enforces on stored data.
+- **Denormalization:** deliberate duplication or precomputation to support a measured access pattern.
+- **Dimension:** descriptive context used to group and filter analytical facts.
+- **Entity:** a domain concept with identity across changes.
+- **Fact table:** an analytical table whose rows represent events or measurements at a declared grain.
+- **Foreign key:** a constraint linking values to a referenced key.
+- **Functional dependency:** a rule that one attribute set determines another.
+- **Grain:** the exact meaning of one row in a fact table or dataset.
+- **Junction table:** a table representing an association, commonly a many-to-many relationship.
+- **Natural key:** an identifier derived from domain data.
+- **Normalization:** organizing relations around keys and dependencies to reduce unintended redundancy.
+- **Primary key:** the selected candidate key used as a table's main identifier.
+- **Referential integrity:** the guarantee that references point to valid referenced keys.
+- **Surrogate key:** an identifier assigned primarily for record identity.
+- **Temporal data:** data whose meaning depends on time, including valid-time and transaction-time history.
+- **Value object:** a concept identified by its value rather than an independent persistent identity.

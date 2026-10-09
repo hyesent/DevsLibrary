@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Devslibrary</string>
+    <string name="title_activity_main">Devslibrary</string>
+    <string name="package_name">com.hyetext.app</string>
+    <string name="custom_url_scheme">com.hyetext.app</string>
+</resources>

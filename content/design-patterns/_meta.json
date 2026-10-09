@@ -1,0 +1,164 @@
+{
+  "id": "design-patterns",
+  "title": "Design Patterns",
+  "description": "A practical, trade-off-focused guide to classic object-oriented patterns and related application patterns, with TypeScript examples and guidance for choosing the simplest useful design.",
+  "category": "Software Engineering",
+  "level": "Intermediate",
+  "language": "en",
+  "estimatedHours": 8,
+  "lessonCount": 29,
+  "lessons": [
+    {
+      "id": "01_what_patterns_are_and_when_they_help",
+      "title": "What Patterns Are and When They Help",
+      "file": "01_what_patterns_are_and_when_they_help.md"
+    },
+    {
+      "id": "02_choosing_patterns_and_evaluating_trade_offs",
+      "title": "Choosing Patterns and Evaluating Trade-offs",
+      "file": "02_choosing_patterns_and_evaluating_trade_offs.md"
+    },
+    {
+      "id": "03_foundations_encapsulation_composition_and_polymorphism",
+      "title": "Foundations: Encapsulation, Composition, and Polymorphism",
+      "file": "03_foundations_encapsulation_composition_and_polymorphism.md"
+    },
+    {
+      "id": "04_strategy_pattern",
+      "title": "Strategy Pattern",
+      "file": "04_strategy_pattern.md"
+    },
+    {
+      "id": "05_observer_events_and_publish_subscribe",
+      "title": "Observer, Events, and Publish–Subscribe",
+      "file": "05_observer_events_and_publish_subscribe.md"
+    },
+    {
+      "id": "06_factory_method_and_simple_factories",
+      "title": "Factory Method and Simple Factories",
+      "file": "06_factory_method_and_simple_factories.md"
+    },
+    {
+      "id": "07_abstract_factory",
+      "title": "Abstract Factory",
+      "file": "07_abstract_factory.md"
+    },
+    {
+      "id": "08_builder_pattern",
+      "title": "Builder Pattern",
+      "file": "08_builder_pattern.md"
+    },
+    {
+      "id": "09_adapter_pattern",
+      "title": "Adapter Pattern",
+      "file": "09_adapter_pattern.md"
+    },
+    {
+      "id": "10_facade_pattern",
+      "title": "Facade Pattern",
+      "file": "10_facade_pattern.md"
+    },
+    {
+      "id": "11_decorator_pattern",
+      "title": "Decorator Pattern",
+      "file": "11_decorator_pattern.md"
+    },
+    {
+      "id": "12_proxy_pattern",
+      "title": "Proxy Pattern",
+      "file": "12_proxy_pattern.md"
+    },
+    {
+      "id": "13_composite_pattern",
+      "title": "Composite Pattern",
+      "file": "13_composite_pattern.md"
+    },
+    {
+      "id": "14_command_pattern",
+      "title": "Command Pattern",
+      "file": "14_command_pattern.md"
+    },
+    {
+      "id": "15_state_pattern",
+      "title": "State Pattern",
+      "file": "15_state_pattern.md"
+    },
+    {
+      "id": "16_template_method_pattern",
+      "title": "Template Method Pattern",
+      "file": "16_template_method_pattern.md"
+    },
+    {
+      "id": "17_iterator_pattern",
+      "title": "Iterator Pattern",
+      "file": "17_iterator_pattern.md"
+    },
+    {
+      "id": "18_chain_of_responsibility",
+      "title": "Chain of Responsibility",
+      "file": "18_chain_of_responsibility.md"
+    },
+    {
+      "id": "19_mediator_pattern",
+      "title": "Mediator Pattern",
+      "file": "19_mediator_pattern.md"
+    },
+    {
+      "id": "20_memento_pattern",
+      "title": "Memento Pattern",
+      "file": "20_memento_pattern.md"
+    },
+    {
+      "id": "21_visitor_pattern",
+      "title": "Visitor Pattern",
+      "file": "21_visitor_pattern.md"
+    },
+    {
+      "id": "22_repository_and_unit_of_work",
+      "title": "Repository and Unit of Work",
+      "file": "22_repository_and_unit_of_work.md"
+    },
+    {
+      "id": "23_dependency_injection",
+      "title": "Dependency Injection",
+      "file": "23_dependency_injection.md"
+    },
+    {
+      "id": "24_mvc_mvp_and_mvvm",
+      "title": "MVC, MVP, and MVVM",
+      "file": "24_mvc_mvp_and_mvvm.md"
+    },
+    {
+      "id": "25_null_object_and_special_case_handling",
+      "title": "Null Object and Special-Case Handling",
+      "file": "25_null_object_and_special_case_handling.md"
+    },
+    {
+      "id": "26_patterns_for_async_work_retry_idempotency_and_outbox",
+      "title": "Patterns for Async Work: Retry, Idempotency, and Outbox",
+      "file": "26_patterns_for_async_work_retry_idempotency_and_outbox.md"
+    },
+    {
+      "id": "27_anti_patterns_when_patterns_make_design_worse",
+      "title": "Anti-Patterns: When Patterns Make Design Worse",
+      "file": "27_anti_patterns_when_patterns_make_design_worse.md"
+    },
+    {
+      "id": "28_refactoring_toward_a_pattern",
+      "title": "Refactoring Toward a Pattern",
+      "file": "28_refactoring_toward_a_pattern.md"
+    },
+    {
+      "id": "29_pattern_selection_guide",
+      "title": "Pattern Selection Guide",
+      "file": "29_pattern_selection_guide.md"
+    }
+  ],
+  "tags": [
+    "design patterns",
+    "software design",
+    "TypeScript",
+    "architecture",
+    "refactoring"
+  ]
+}

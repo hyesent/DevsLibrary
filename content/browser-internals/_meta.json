@@ -1,0 +1,165 @@
+{
+  "id": "devslibrary_browser_internals",
+  "title": "Browser Internals: A Practical Engineering Textbook",
+  "slug": "browser-internals",
+  "version": "1.0.0",
+  "description": "A deep practical guide to browser architecture, parsing, rendering, JavaScript execution, networking, security, storage, accessibility APIs, performance, and debugging.",
+  "audience": "Web developers from beginner to advanced",
+  "lesson_count": 35,
+  "language": "en",
+  "prerequisites": [
+    "Basic HTML and CSS",
+    "JavaScript fundamentals",
+    "Basic HTTP knowledge is helpful"
+  ],
+  "learning_outcomes": [
+    "Trace navigation from URL resolution through resource loading and rendering.",
+    "Explain DOM/CSS parsing, style calculation, layout, paint, rasterization, and compositing.",
+    "Understand JavaScript scheduling, workers, memory management, and browser APIs.",
+    "Reason about browser networking, caches, storage, service workers, and offline behavior.",
+    "Understand origin boundaries, browser security mechanisms, permissions, and embedded contexts.",
+    "Use developer tools and repeatable experiments to investigate performance and compatibility issues."
+  ],
+  "chapters": [
+    {
+      "file": "01-how-browsers-work.md",
+      "title": "How Browsers Work"
+    },
+    {
+      "file": "02-url-navigation-dns-and-connections.md",
+      "title": "URLs, Navigation, DNS, and Connections"
+    },
+    {
+      "file": "03-http-cache-and-resource-loading.md",
+      "title": "HTTP Caching and Resource Loading"
+    },
+    {
+      "file": "04-html-tokenization-dom-construction.md",
+      "title": "HTML Parsing and DOM Construction"
+    },
+    {
+      "file": "05-cssom-cascade-and-computed-style.md",
+      "title": "CSSOM, Cascade, and Computed Style"
+    },
+    {
+      "file": "06-rendering-pipeline-style-layout-paint-composite.md",
+      "title": "The Rendering Pipeline: Style, Layout, Paint, Composite"
+    },
+    {
+      "file": "07-layout-engines-flow-flex-grid-and-positioning.md",
+      "title": "Layout: Flow, Flexbox, Grid, and Positioning"
+    },
+    {
+      "file": "08-paint-rasterization-gpu-and-compositing.md",
+      "title": "Painting, Rasterization, GPU, and Compositing"
+    },
+    {
+      "file": "09-javascript-engine-parsing-jit-and-execution.md",
+      "title": "JavaScript Engines: Parsing, JIT, and Execution"
+    },
+    {
+      "file": "10-event-loop-tasks-microtasks-and-rendering.md",
+      "title": "The Event Loop, Tasks, Microtasks, and Rendering"
+    },
+    {
+      "file": "11-web-workers-shared-workers-and-service-workers.md",
+      "title": "Web Workers, Shared Workers, and Service Workers"
+    },
+    {
+      "file": "12-memory-management-garbage-collection-and-leaks.md",
+      "title": "Memory Management, Garbage Collection, and Leaks"
+    },
+    {
+      "file": "13-garbage-collection-and-performance-tradeoffs.md",
+      "title": "Garbage Collection and Performance Trade-offs"
+    },
+    {
+      "file": "14-security-origin-same-origin-policy-and-site-isolation.md",
+      "title": "Origins, Same-Origin Policy, and Site Isolation"
+    },
+    {
+      "file": "15-cookies-storage-and-browser-data.md",
+      "title": "Cookies, Storage, and Browser Data"
+    },
+    {
+      "file": "16-service-workers-offline-and-pwa-lifecycle.md",
+      "title": "Service Workers, Offline Experiences, and PWA Lifecycle"
+    },
+    {
+      "file": "17-accessibility-tree-and-browser-accessibility-apis.md",
+      "title": "The Accessibility Tree and Accessibility APIs"
+    },
+    {
+      "file": "18-fonts-text-shaping-and-image-decoding.md",
+      "title": "Fonts, Text Shaping, and Image Decoding"
+    },
+    {
+      "file": "19-network-prioritization-and-critical-rendering-path.md",
+      "title": "Network Prioritization and the Critical Rendering Path"
+    },
+    {
+      "file": "20-web-vitals-and-performance-observation.md",
+      "title": "Web Vitals and Performance Observation"
+    },
+    {
+      "file": "21-devtools-performance-profiling.md",
+      "title": "Performance Profiling with Developer Tools"
+    },
+    {
+      "file": "22-devtools-network-storage-and-rendering-panels.md",
+      "title": "Network, Storage, and Rendering DevTools"
+    },
+    {
+      "file": "23-iframes-sandboxing-and-embedded-browsing-contexts.md",
+      "title": "Iframes, Sandboxing, and Embedded Browsing Contexts"
+    },
+    {
+      "file": "24-browser-security-csp-cors-csrf-and-xss.md",
+      "title": "Browser Security: CSP, CORS, CSRF, and XSS"
+    },
+    {
+      "file": "25-browser-permissions-and-privacy-controls.md",
+      "title": "Browser Permissions, Privacy, and User Controls"
+    },
+    {
+      "file": "26-forms-validation-and-browser-native-behavior.md",
+      "title": "Forms, Validation, and Native Browser Behavior"
+    },
+    {
+      "file": "27-history-navigation-and-browser-state.md",
+      "title": "History, Navigation, and Browser State"
+    },
+    {
+      "file": "28-web-apis-observers-and-scheduling.md",
+      "title": "Web APIs: Observers and Scheduling"
+    },
+    {
+      "file": "29-browser-compatibility-progressive-enhancement.md",
+      "title": "Browser Compatibility and Progressive Enhancement"
+    },
+    {
+      "file": "30-standards-specifications-and-implementation-reality.md",
+      "title": "Standards, Specifications, and Implementation Reality"
+    },
+    {
+      "file": "31-performance-patterns-and-anti-patterns.md",
+      "title": "Performance Patterns and Anti-Patterns"
+    },
+    {
+      "file": "32-cross-browser-debugging-and-reproducible-bugs.md",
+      "title": "Cross-Browser Debugging and Reproducible Bugs"
+    },
+    {
+      "file": "33-browser-automation-and-end-to-end-testing.md",
+      "title": "Browser Automation and End-to-End Testing"
+    },
+    {
+      "file": "34-capstone-build-a-browser-investigation-lab.md",
+      "title": "Capstone: Build a Browser Investigation Lab"
+    },
+    {
+      "file": "35-browser-internals-glossary.md",
+      "title": "Browser Internals Glossary"
+    }
+  ]
+}

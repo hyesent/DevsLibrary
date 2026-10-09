@@ -1,0 +1,157 @@
+{
+  "title": "Docker",
+  "tagline": "Build, ship, secure, and operate applications in containers",
+  "summary": "A practical textbook that develops a correct mental model of images, containers, the Docker Engine, builds, networking, storage, Compose, security, registries, CI, deployment, and troubleshooting. Lessons include commands, configuration examples, explicit assumptions, failure modes, and hands-on checkpoints. The course emphasizes reproducibility, safe handling of state and secrets, and the distinction between local container workflows and production platform responsibilities.",
+  "topics": [
+    "Docker and the Container Model",
+    "Installing Docker and Choosing an Environment",
+    "The Docker CLI, Daemon, Contexts, and Registries",
+    "Running, Inspecting, and Stopping Containers",
+    "Images, Tags, Digests, and Layers",
+    "Writing a First Dockerfile",
+    "Build Contexts, .dockerignore, and Build Performance",
+    "Choosing Base Images and Reproducible Builds",
+    "Container Commands, Entrypoints, and Signals",
+    "Publishing Ports and Understanding Networking",
+    "Persistent Data: Writable Layers, Volumes, and Bind Mounts",
+    "Environment Variables and Configuration",
+    "Multi-Stage Builds and Smaller Runtime Images",
+    "Docker Compose and Multi-Service Applications",
+    "Service Discovery, Readiness, and Health Checks",
+    "Resource Limits, CPU, Memory, and Runtime Behavior",
+    "Logging, Debugging, and Container Lifecycle",
+    "Docker Security: Least Privilege and Image Hygiene",
+    "Secrets and BuildKit Secret Mounts",
+    "Image Scanning, SBOMs, and Supply-Chain Integrity",
+    "Registries, Image Publishing, and Versioning",
+    "Compose Profiles, Overrides, and Development Workflows",
+    "Databases in Containers: Persistence and Operations",
+    "CI Builds, Testing, and Artifact Promotion",
+    "Deploying Containers and Handling Updates",
+    "Troubleshooting Common Docker Failures",
+    "Performance: Build Cache, Runtime Metrics, and Image Size",
+    "Orchestration Boundaries: When Docker Is Not the Whole Platform",
+    "Capstone: Containerize and Operate a Library API"
+  ],
+  "icon": "container",
+  "order": 22,
+  "lesson_count": 29,
+  "chapters": [
+    {
+      "file": "01-docker-and-the-container-model.md",
+      "title": "Docker and the Container Model"
+    },
+    {
+      "file": "02-installing-docker-and-environments.md",
+      "title": "Installing Docker and Choosing an Environment"
+    },
+    {
+      "file": "03-cli-daemon-contexts-and-registries.md",
+      "title": "The Docker CLI, Daemon, Contexts, and Registries"
+    },
+    {
+      "file": "04-running-inspecting-and-stopping-containers.md",
+      "title": "Running, Inspecting, and Stopping Containers"
+    },
+    {
+      "file": "05-images-tags-digests-and-layers.md",
+      "title": "Images, Tags, Digests, and Layers"
+    },
+    {
+      "file": "06-writing-a-first-dockerfile.md",
+      "title": "Writing a First Dockerfile"
+    },
+    {
+      "file": "07-build-contexts-dockerignore-and-build-performance.md",
+      "title": "Build Contexts, .dockerignore, and Build Performance"
+    },
+    {
+      "file": "08-base-images-and-reproducible-builds.md",
+      "title": "Choosing Base Images and Reproducible Builds"
+    },
+    {
+      "file": "09-commands-entrypoints-and-signals.md",
+      "title": "Container Commands, Entrypoints, and Signals"
+    },
+    {
+      "file": "10-publishing-ports-and-networking.md",
+      "title": "Publishing Ports and Understanding Networking"
+    },
+    {
+      "file": "11-persistent-data-volumes-and-bind-mounts.md",
+      "title": "Persistent Data: Writable Layers, Volumes, and Bind Mounts"
+    },
+    {
+      "file": "12-environment-variables-and-configuration.md",
+      "title": "Environment Variables and Configuration"
+    },
+    {
+      "file": "13-multi-stage-builds-and-smaller-runtime-images.md",
+      "title": "Multi-Stage Builds and Smaller Runtime Images"
+    },
+    {
+      "file": "14-docker-compose-and-multi-service-apps.md",
+      "title": "Docker Compose and Multi-Service Applications"
+    },
+    {
+      "file": "15-service-discovery-readiness-and-health-checks.md",
+      "title": "Service Discovery, Readiness, and Health Checks"
+    },
+    {
+      "file": "16-resource-limits-cpu-memory-and-runtime-behavior.md",
+      "title": "Resource Limits, CPU, Memory, and Runtime Behavior"
+    },
+    {
+      "file": "17-logging-debugging-and-container-lifecycle.md",
+      "title": "Logging, Debugging, and Container Lifecycle"
+    },
+    {
+      "file": "18-docker-security-least-privilege-and-image-hygiene.md",
+      "title": "Docker Security: Least Privilege and Image Hygiene"
+    },
+    {
+      "file": "19-secrets-and-buildkit-secret-mounts.md",
+      "title": "Secrets and BuildKit Secret Mounts"
+    },
+    {
+      "file": "20-image-scanning-sboms-and-supply-chain-integrity.md",
+      "title": "Image Scanning, SBOMs, and Supply-Chain Integrity"
+    },
+    {
+      "file": "21-registries-image-publishing-and-versioning.md",
+      "title": "Registries, Image Publishing, and Versioning"
+    },
+    {
+      "file": "22-compose-profiles-overrides-and-development-workflows.md",
+      "title": "Compose Profiles, Overrides, and Development Workflows"
+    },
+    {
+      "file": "23-databases-in-containers-persistence-and-operations.md",
+      "title": "Databases in Containers: Persistence and Operations"
+    },
+    {
+      "file": "24-ci-builds-testing-and-artifact-promotion.md",
+      "title": "CI Builds, Testing, and Artifact Promotion"
+    },
+    {
+      "file": "25-deploying-containers-and-handling-updates.md",
+      "title": "Deploying Containers and Handling Updates"
+    },
+    {
+      "file": "26-troubleshooting-common-docker-failures.md",
+      "title": "Troubleshooting Common Docker Failures"
+    },
+    {
+      "file": "27-performance-build-cache-runtime-metrics-and-image-size.md",
+      "title": "Performance: Build Cache, Runtime Metrics, and Image Size"
+    },
+    {
+      "file": "28-orchestration-boundaries.md",
+      "title": "Orchestration Boundaries: When Docker Is Not the Whole Platform"
+    },
+    {
+      "file": "29-capstone-containerize-a-library-api.md",
+      "title": "Capstone: Containerize and Operate a Library API"
+    }
+  ]
+}

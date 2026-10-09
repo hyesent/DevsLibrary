@@ -1,0 +1,45 @@
+# Container Commands, Entrypoints, and Signals
+
+## Learning objectives
+By the end of this lesson, you should be able to:
+- Explain the core idea of container commands, entrypoints, and signals in your own words.
+- Apply the commands or configuration shown here and interpret their output.
+- Identify the main failure modes and choose a safe diagnostic step.
+
+## Mental model
+`ENTRYPOINT` defines the main executable, while `CMD` provides default arguments or a default command depending on how the two are combined. Runtime arguments can override `CMD`. In exec form, the executable becomes the process directly; shell form may insert a shell that changes signal delivery. Correct signal handling matters when Docker stops a container and sends a termination signal before eventually force-killing it.
+
+## Worked example
+```dockerfile
+ENTRYPOINT ["node"]
+CMD ["server.js"]
+```
+
+```bash
+docker run --rm example-app:dev
+```
+
+## Reasoning through the details
+A useful Docker workflow makes state and boundaries explicit. Ask four questions before changing anything: **what object am I changing, where does its data live, which process is responsible, and what evidence will confirm the result?** This avoids treating containers, images, networks, volumes, and registry artifacts as interchangeable. It also makes commands safer: inspect first, make one controlled change, then verify the outcome.
+
+When adapting an example, check the assumptions that are specific to your application: runtime version, package manager and lockfile, output directory, listening interface, required environment variables, file ownership, and whether the process is expected to stay in the foreground. Commands are illustrative and may require a project-specific image name, service name, or port. Do not copy example credentials into a real environment.
+
+## Technical depth
+The runtime command determines signal handling and shutdown semantics. In exec form, Docker starts the specified executable directly; in shell form, a shell may become PID 1 and may not forward signals as expected. Applications should handle SIGTERM, stop accepting new work, finish or safely abandon in-flight work, close connections, and exit within the configured stop timeout. For applications with child processes, use an appropriate init process or explicitly manage child lifecycle rather than leaving orphaned processes.
+
+## Common mistakes and safety notes
+Do not make a container stay alive by running an unrelated infinite loop when the actual application has failed. A PID 1 process has special signal and child-reaping considerations. If an application launches subprocesses, ensure it forwards signals and cleans up children appropriately.
+
+A reliable operator prefers the smallest reversible change that tests a hypothesis. Before deleting resources, identify whether they contain state or diagnostic evidence. Before publishing a port or image, identify the intended audience. Before shipping an image, verify what files, users, packages, and configuration it contains.
+
+## Hands-on checkpoint
+Create a container whose process handles termination cleanly. Stop it and inspect shutdown logs. Explain the difference between changing a default argument and replacing the entrypoint.
+
+## Review questions
+1. What is the main concept in this lesson, and which Docker object or boundary does it concern?
+2. What evidence would demonstrate that the example worked as intended?
+3. What is one realistic failure mode, and how would you diagnose it without immediately deleting resources?
+4. Which part of the example would need to change before using it in a real project?
+
+## Further practice
+Repeat the exercise from a clean state and write down the exact commands and expected observations. Then change one assumption—such as the image version, port, mount path, or environment variable—and predict the result before running it. Compare your prediction with the observed behavior.

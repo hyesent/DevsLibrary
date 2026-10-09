@@ -1,0 +1,27 @@
+{
+  "title": "SQL",
+  "tagline": "Think in data, relationships, and queries",
+  "summary": "SQL is the language used to work with relational data. This book takes you from the relational model and database design through queries, joins, aggregation, transactions, constraints, indexes, query optimization, security, migrations, and distributed database concepts. By the end you will be able to design reliable schemas, write complex queries, understand how databases execute them, and make architectural decisions about persistent data.",
+  "topics": [
+    "Relational database concepts",
+    "Tables and relationships",
+    "Keys and constraints",
+    "Database design and normalization",
+    "Queries and filtering",
+    "Aggregation",
+    "Joins and subqueries",
+    "Data modification",
+    "Transactions and ACID",
+    "Concurrency and isolation",
+    "Indexes and query plans",
+    "CTEs and window functions",
+    "Advanced data types",
+    "Database security",
+    "Migrations and application integration",
+    "Performance and optimization",
+    "Replication and partitioning",
+    "Distributed database architecture"
+  ],
+  "icon": "book",
+  "order": 7
+}

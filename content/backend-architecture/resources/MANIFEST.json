@@ -1,0 +1,167 @@
+[
+  {
+    "path": "CONTENTS.md",
+    "bytes": 3336,
+    "sha256": "35ca87cd136d05a2a4d902980425a839136cf89613288620abcb0adc4173e8cf"
+  },
+  {
+    "path": "README.md",
+    "bytes": 1556,
+    "sha256": "ce70a70140914ed4863bb584d2dfc7d34e9efdc25e4d804b376867d7c162c480"
+  },
+  {
+    "path": "_meta.json",
+    "bytes": 882,
+    "sha256": "03ebe4870206166bf128fd3be63c2d9740b4736732f645cd4cda99a8c3a85161"
+  },
+  {
+    "path": "labs/README.md",
+    "bytes": 1964,
+    "sha256": "54db1ab022e1be1f682a390c408474c20d69d83782ab370eb52e2049a8fd8dc6"
+  },
+  {
+    "path": "labs/capstone-rubric.md",
+    "bytes": 1186,
+    "sha256": "0f8ec4ee2d4c0f85b299bdc0fa02579fe5988d370c4f569962e8f6e42cd55332"
+  },
+  {
+    "path": "lessons/01-what-backend-architecture-solves.md",
+    "bytes": 5637,
+    "sha256": "92fc966df6f7d4e66747b0416f224d3bdcb3568f9046c374a26cf268657b8285"
+  },
+  {
+    "path": "lessons/02-requirements-and-capacity.md",
+    "bytes": 4827,
+    "sha256": "d43fbe7050e91534c374476c63652982125953843dbe1e0b00f74223b625e08d"
+  },
+  {
+    "path": "lessons/03-modular-monoliths-and-service-boundaries.md",
+    "bytes": 5078,
+    "sha256": "8c86f0ba0b73234904838c3beaf8e211c910108e9aebca1ccc5bada5f1b6a941"
+  },
+  {
+    "path": "lessons/04-request-lifecycle-and-api-boundaries.md",
+    "bytes": 4988,
+    "sha256": "d5f01e92d10d29779fe34d67d3f941fdadb1420c41caf17e47d96126be94b11b"
+  },
+  {
+    "path": "lessons/05-data-ownership-and-transactions.md",
+    "bytes": 4997,
+    "sha256": "9c03b7ba277a4671b37817a5d49d520d639c235a3572ba4db515f8bec33a6e71"
+  },
+  {
+    "path": "lessons/06-caching-and-invalidation.md",
+    "bytes": 4549,
+    "sha256": "1ed13bc91e62983c80ebb42597079f7e96b5dbd9d94cad3ec859fad45149a521"
+  },
+  {
+    "path": "lessons/07-queues-events-and-background-work.md",
+    "bytes": 4905,
+    "sha256": "19128d16395656d328a90df4862a5b7e6c12eb0931713eb8721e2843c82480de"
+  },
+  {
+    "path": "lessons/08-reliability-timeouts-retries-and-circuit-breakers.md",
+    "bytes": 4333,
+    "sha256": "314d1efa1d85c1b01f90f704b20a5b96d8e25c9c54691fd4c0290676026030a9"
+  },
+  {
+    "path": "lessons/09-authentication-authorization-and-trust-boundaries.md",
+    "bytes": 4744,
+    "sha256": "58b4f540e715237da25052e986f5b695d791b633df63dafe72df4fbc9054a3d3"
+  },
+  {
+    "path": "lessons/10-secrets-configuration-and-environments.md",
+    "bytes": 4484,
+    "sha256": "da17e27fdb4eee144292b26a3b639cfc12d6b49a0a74a94b2dab035a0a9c828f"
+  },
+  {
+    "path": "lessons/11-edge-functions-fundamentals.md",
+    "bytes": 5190,
+    "sha256": "f85cbd3659e9521c9dc96788559a1405ad8dcbc63c702c6a5b182801dd74d827"
+  },
+  {
+    "path": "lessons/12-edge-functions-runtimes-and-portability.md",
+    "bytes": 5232,
+    "sha256": "dc31fca2e44b7b3389bd4eeab039e10be37b3778d1017893aa3ee37fd9fea6b9"
+  },
+  {
+    "path": "lessons/13-edge-functions-http-handler-engineering.md",
+    "bytes": 5174,
+    "sha256": "3a4bbcc9214b89c4901395e5a44779411d026963647b0919dfaf06e2a65535c0"
+  },
+  {
+    "path": "lessons/14-edge-functions-database-access-and-security.md",
+    "bytes": 5175,
+    "sha256": "a7e85d17e45c10a8ac52d0d61f3579b7eface8e4f6db8efdb79fdacf4848a72e"
+  },
+  {
+    "path": "lessons/15-edge-functions-reliability-webhooks-and-idempotency.md",
+    "bytes": 4902,
+    "sha256": "6f9a90e6612618762aae57aa4a50cb83afd172a51fbcf69a7dfa8973a3d5d113"
+  },
+  {
+    "path": "lessons/16-edge-vs-backend-vs-worker-decision-guide.md",
+    "bytes": 4808,
+    "sha256": "c850bc6ae7905957dec1b87202d81aef02a8743c4e87ae9d5f3d26c3efa6f7cc"
+  },
+  {
+    "path": "lessons/17-observability-logs-metrics-traces.md",
+    "bytes": 4738,
+    "sha256": "904a910b6de1e559f571f57af4e40a3aaccaab8ef19e306188cce7d4d1d64356"
+  },
+  {
+    "path": "lessons/18-testing-strategy-and-contracts.md",
+    "bytes": 4620,
+    "sha256": "c107119ab515e7be3c92ef2175252cd64bc102bbd2f3ff9f98bee2aae0cfcd41"
+  },
+  {
+    "path": "lessons/19-deployment-release-and-rollback.md",
+    "bytes": 4186,
+    "sha256": "3fb70fff1b52c8b9edb876b65b10f7fc877bf1bf83b8fba116497f025124d53a"
+  },
+  {
+    "path": "lessons/20-database-performance-and-query-shaping.md",
+    "bytes": 4312,
+    "sha256": "6a196ca71ab11efb2f4e2289f8644ebcccf1c3b343e47508c8363f4634c66b28"
+  },
+  {
+    "path": "lessons/21-multi-region-and-distributed-consistency.md",
+    "bytes": 4409,
+    "sha256": "4bfc3b475368dca370e47049491fa1fc86547013eb118d152eb5a65b4564fcd8"
+  },
+  {
+    "path": "lessons/22-security-threat-modeling-and-abuse-controls.md",
+    "bytes": 4378,
+    "sha256": "188f103e7d59c3aaa78690c6081321a4ad116e39d21c161654ea65b723aa71d5"
+  },
+  {
+    "path": "lessons/23-architecture-decision-records-and-evolution.md",
+    "bytes": 4092,
+    "sha256": "5581bf31e1b97082f51d30916f3c9246bb224d16077c6bcc425b13f4216734b6"
+  },
+  {
+    "path": "lessons/24-capstone-reference-architecture.md",
+    "bytes": 5961,
+    "sha256": "e5105f667b9d6af186570ee0956f4d3fa5813f915f995db7ba93af391026eead"
+  },
+  {
+    "path": "references/adr-template.md",
+    "bytes": 665,
+    "sha256": "c36697cac9336af59dede57beeddf28285adbd4883b5065e7130e140af3c84fa"
+  },
+  {
+    "path": "references/edge-functions-decision-matrix.md",
+    "bytes": 2227,
+    "sha256": "a32e605adc2c4cdf7474e1fea8144528e43c9e2291719280e39aafacbb4723bb"
+  },
+  {
+    "path": "references/glossary.md",
+    "bytes": 2031,
+    "sha256": "ba4f33690c634da9d5ab4b0925e9264c337677f6766a5f1bb333946e4f8e37e6"
+  },
+  {
+    "path": "references/production-readiness-checklist.md",
+    "bytes": 1618,
+    "sha256": "7f02c2294e1f03a2dc54f2f655d270ef97838a8f1ac44bcaa94fe8fa17b0b322"
+  }
+]

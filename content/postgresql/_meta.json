@@ -1,0 +1,162 @@
+{
+  "title": "PostgreSQL",
+  "tagline": "Design, query, secure, and operate reliable relational databases",
+  "summary": "A practical PostgreSQL textbook covering relational modeling, SQL queries, transactions and concurrency, index design, query plans, vacuum, JSONB, security, migrations, backups, replication, partitioning, pooling, observability, and production operations. Lessons combine runnable SQL, design reasoning, failure modes, and hands-on checkpoints.",
+  "topics": [
+    "PostgreSQL architecture",
+    "Installation and clients",
+    "Data types and NULL",
+    "Keys and constraints",
+    "Relational design",
+    "Data manipulation",
+    "Filtering and sorting",
+    "Joins",
+    "Aggregation",
+    "Subqueries and CTEs",
+    "Window functions",
+    "Transactions and ACID",
+    "Locking and isolation",
+    "Indexes",
+    "EXPLAIN and tuning",
+    "VACUUM and autovacuum",
+    "JSONB and specialized types",
+    "Views and functions",
+    "Roles and row-level security",
+    "Migrations",
+    "Backups and PITR",
+    "Replication and failover",
+    "Partitioning",
+    "Connection pooling",
+    "Application integration",
+    "Reliability and idempotency",
+    "Testing",
+    "Deployment and upgrades",
+    "Observability",
+    "Production capstone"
+  ],
+  "icon": "database",
+  "order": 21,
+  "lesson_count": 30,
+  "chapters": [
+    {
+      "file": "01-postgresql-and-the-relational-engine.md",
+      "title": "PostgreSQL and the Relational Engine"
+    },
+    {
+      "file": "02-installation-clients-and-environments.md",
+      "title": "Installation, Clients, and Environments"
+    },
+    {
+      "file": "03-data-types-and-null-semantics.md",
+      "title": "Data Types and NULL Semantics"
+    },
+    {
+      "file": "04-tables-keys-and-constraints.md",
+      "title": "Tables, Keys, and Constraints"
+    },
+    {
+      "file": "05-relational-design-and-normalization.md",
+      "title": "Relational Design and Normalization"
+    },
+    {
+      "file": "06-insert-update-delete-and-returning.md",
+      "title": "INSERT, UPDATE, DELETE, and RETURNING"
+    },
+    {
+      "file": "07-select-filter-sort-and-limit.md",
+      "title": "SELECT, Filtering, Sorting, and LIMIT"
+    },
+    {
+      "file": "08-joins-and-relational-queries.md",
+      "title": "Joins and Relational Queries"
+    },
+    {
+      "file": "09-aggregation-grouping-and-having.md",
+      "title": "Aggregation, GROUP BY, and HAVING"
+    },
+    {
+      "file": "10-subqueries-ctes-and-set-operations.md",
+      "title": "Subqueries, CTEs, and Set Operations"
+    },
+    {
+      "file": "11-window-functions.md",
+      "title": "Window Functions"
+    },
+    {
+      "file": "12-transactions-acid-and-savepoints.md",
+      "title": "Transactions, ACID, and Savepoints"
+    },
+    {
+      "file": "13-locking-concurrency-and-isolation.md",
+      "title": "Locking, Concurrency, and Isolation"
+    },
+    {
+      "file": "14-indexes-btree-and-index-design.md",
+      "title": "Indexes and Index Design"
+    },
+    {
+      "file": "15-explain-analyze-and-query-tuning.md",
+      "title": "EXPLAIN, ANALYZE, and Query Tuning"
+    },
+    {
+      "file": "16-vacuum-autovacuum-and-bloat.md",
+      "title": "VACUUM, Autovacuum, and Bloat"
+    },
+    {
+      "file": "17-jsonb-arrays-and-specialized-types.md",
+      "title": "JSONB, Arrays, and Specialized Types"
+    },
+    {
+      "file": "18-views-materialized-views-and-functions.md",
+      "title": "Views, Materialized Views, and Functions"
+    },
+    {
+      "file": "19-roles-privileges-and-row-security.md",
+      "title": "Roles, Privileges, and Row-Level Security"
+    },
+    {
+      "file": "20-migrations-and-zero-downtime-changes.md",
+      "title": "Migrations and Zero-Downtime Changes"
+    },
+    {
+      "file": "21-backups-restore-and-point-in-time-recovery.md",
+      "title": "Backups, Restore, and Point-in-Time Recovery"
+    },
+    {
+      "file": "22-replication-high-availability-and-failover.md",
+      "title": "Replication, High Availability, and Failover"
+    },
+    {
+      "file": "23-partitioning-and-large-table-strategy.md",
+      "title": "Partitioning and Large-Table Strategy"
+    },
+    {
+      "file": "24-connection-pooling-and-capacity.md",
+      "title": "Connection Pooling and Capacity Planning"
+    },
+    {
+      "file": "25-application-integration-and-safe-sql.md",
+      "title": "Application Integration and Safe SQL"
+    },
+    {
+      "file": "26-observability-logging-and-statistics.md",
+      "title": "Observability, Logging, and Statistics"
+    },
+    {
+      "file": "27-reliability-timeouts-retries-and-idempotency.md",
+      "title": "Reliability: Timeouts, Retries, and Idempotency"
+    },
+    {
+      "file": "28-testing-postgresql-applications.md",
+      "title": "Testing PostgreSQL Applications"
+    },
+    {
+      "file": "29-postgresql-deployment-and-upgrades.md",
+      "title": "Deployment, Upgrades, and Production Readiness"
+    },
+    {
+      "file": "30-capstone-design-a-production-library-database.md",
+      "title": "Capstone: Design a Production Library Database"
+    }
+  ]
+}

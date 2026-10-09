@@ -1,0 +1,30 @@
+{
+  "title": "Testing",
+  "tagline": "Build confidence in software through evidence, disciplined test design, and reliable automation",
+  "summary": "A comprehensive textbook on software testing: fundamentals and oracles; unit, component, integration, contract, API, database, browser and end-to-end testing; test doubles; test data and determinism; property-based, fuzz, mutation, regression, exploratory, accessibility, visual, performance and security testing; async and distributed systems; test architecture; TDD/BDD; CI pipelines; release risk; and practical testing workflows for JavaScript, Python, React, APIs, CLIs, and services. The goal is not to maximize test counts, but to reason about what each test proves, where confidence comes from, and what risk remains.",
+  "topics": [
+    "Testing fundamentals and testability",
+    "Test levels and strategy",
+    "Test design techniques",
+    "Unit and component testing",
+    "Mocks, fakes, and dependency seams",
+    "Integration, API, contract, and database testing",
+    "Browser and end-to-end testing",
+    "Asynchronous and distributed systems",
+    "Property-based and fuzz testing",
+    "Mutation testing and coverage",
+    "Regression and exploratory testing",
+    "Test data and determinism",
+    "Flaky test diagnosis",
+    "Accessibility and visual testing",
+    "Performance and security testing",
+    "Test architecture and maintainability",
+    "TDD and BDD",
+    "Environments and CI/CD",
+    "Reporting, release risk, and resilience",
+    "JavaScript, Python, React, HTTP, CLI and worker testing",
+    "Capstone strategy and synthesis"
+  ],
+  "icon": "book",
+  "order": 12
+}

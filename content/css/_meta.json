@@ -1,0 +1,32 @@
+{
+  "title": "CSS",
+  "tagline": "Understand the browser’s styling, layout, and rendering system",
+  "summary": "A textbook-level CSS course that builds a mental model of how browsers parse stylesheets, resolve the cascade, compute values, construct layout, paint pixels, and respond to viewport and component constraints. It progresses from selectors and the box model through formatting contexts, Flexbox, Grid, positioning, responsive architecture, modern CSS features, animation, accessibility, performance, and large-scale design systems. The goal is not to memorize properties, but to reason from the browser’s rules and predict what the page will do.",
+  "topics": [
+    "CSS mental model",
+    "Syntax and selectors",
+    "Cascade and inheritance",
+    "Values and units",
+    "Box model",
+    "Formatting contexts",
+    "Normal flow",
+    "Sizing",
+    "Flexbox",
+    "Grid",
+    "Positioning",
+    "Stacking and painting",
+    "Typography",
+    "Colors and effects",
+    "Responsive design",
+    "Container queries",
+    "Logical properties",
+    "Modern CSS features",
+    "Transitions and animation",
+    "Accessibility",
+    "Performance",
+    "Debugging",
+    "Architecture and design systems"
+  ],
+  "icon": "book",
+  "order": 2
+}

@@ -1,0 +1,23 @@
+# Software Architecture Glossary
+
+- **ADR:** Architecture Decision Record; a concise record of context, decision, alternatives, and consequences.
+- **Aggregate:** a domain consistency boundary controlled through an aggregate root.
+- **Anti-corruption layer:** a translation boundary that protects a domain model from an external model.
+- **Architecture fitness function:** a repeatable check of an architectural property.
+- **Bounded context:** a boundary within which a domain model and its language have consistent meaning.
+- **Bulkhead:** a mechanism that isolates resources to limit the impact of failures.
+- **Circuit breaker:** a pattern that temporarily stops calls to a failing dependency.
+- **Cohesion:** how closely related a module's responsibilities are.
+- **Coupling:** the degree of dependency between components.
+- **CQRS:** Command Query Responsibility Segregation; separating models or paths for writes and reads.
+- **Event:** a record that something happened.
+- **Hexagonal architecture:** a ports-and-adapters approach that separates policy from external technologies.
+- **Idempotency:** the property that repeating an operation under defined conditions does not repeat its intended effect.
+- **Modular monolith:** one deployable application with explicit internal module boundaries.
+- **Outbox pattern:** a technique that commits business data and publication intent in one local transaction.
+- **Port:** an application-facing contract for an interaction or capability.
+- **RPO:** Recovery Point Objective; the tolerable amount of data loss measured in time.
+- **RTO:** Recovery Time Objective; the target time to recover a service.
+- **Saga:** a sequence of local transactions with explicit continuation and compensation behavior.
+- **SLO:** Service-Level Objective; a target for a measured service property over a period.
+- **Trust boundary:** a boundary across which security assumptions or privileges change.

@@ -1,0 +1,31 @@
+{
+  "title": "Tailwind CSS",
+  "tagline": "Build interfaces from a systematic vocabulary of composable utilities",
+  "summary": "Tailwind CSS is a utility-first CSS framework for constructing interfaces from small, composable classes. This book explains the ideas underneath utility-first design, how Tailwind generates styles, responsive and state variants, layout, typography, color, customization, themes, components, accessibility, React integration, performance, and production architecture. The goal is to understand Tailwind as a design and build system rather than memorize class names.",
+  "topics": [
+    "Utility-first CSS",
+    "CSS generation",
+    "Content detection",
+    "Responsive design",
+    "State variants",
+    "Layout",
+    "Flexbox and Grid",
+    "Spacing",
+    "Typography",
+    "Color",
+    "Sizing",
+    "Positioning",
+    "Transitions and animation",
+    "Dark mode",
+    "Themes",
+    "Custom utilities",
+    "Components",
+    "Design systems",
+    "Accessibility",
+    "React integration",
+    "Performance",
+    "Production architecture"
+  ],
+  "icon": "book",
+  "order": 11
+}

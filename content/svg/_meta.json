@@ -1,0 +1,27 @@
+{
+  "title": "SVG",
+  "tagline": "Draw, structure, and control graphics for the web",
+  "summary": "SVG is the web's native language for scalable vector graphics. This book takes you from the SVG document model and coordinate systems through shapes, paths, curves, gradients, transforms, text, masks, filters, animation, interaction, accessibility, optimization, and programmatic SVG generation. By the end you'll understand SVG as a structured graphics system rather than just a collection of drawing commands.",
+  "topics": [
+    "SVG mental model",
+    "Document structure",
+    "Coordinate systems",
+    "Shapes and geometry",
+    "Fill and stroke",
+    "Colors and gradients",
+    "Paths and curves",
+    "Text",
+    "Groups and reusable graphics",
+    "Clipping and masking",
+    "Filters",
+    "Transforms",
+    "CSS and SVG",
+    "Responsive SVG",
+    "SVG animation",
+    "JavaScript and interaction",
+    "Accessibility",
+    "Optimization and architecture"
+  ],
+  "icon": "book",
+  "order": 3
+}
