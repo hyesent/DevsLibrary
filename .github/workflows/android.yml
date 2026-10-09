@@ -2,60 +2,125 @@ name: Android APK Build
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
+    name: Build DevsLibrary APK
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # Needed to update the latest release
+    timeout-minutes: 45
 
     steps:
-      - uses: actions/checkout@v4
+      # 1. Download the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      # 2. Configure Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
+          cache: npm
 
-      - run: npm ci
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
 
-      # ---------- Verify build output (debug) ----------
-      - name: Verify dist folder
+      # 4. Build the web application
+      - name: Build web app
+        run: npm run build
+
+      # 5. Verify web build output
+      - name: Verify web build output
+        shell: bash
         run: |
-          ls -la dist/
-          test -f dist/index.html && echo "✅ dist/index.html found" || (echo "❌ dist/index.html MISSING" && exit 1)
+          set -e
 
-      - uses: actions/setup-java@v4
+          if [ ! -d dist ]; then
+            echo "::error::The dist directory was not created by npm run build."
+            echo "Checking available project directories:"
+            ls -la
+            exit 1
+          fi
+
+          ls -la dist/
+
+          if [ ! -f dist/index.html ]; then
+            echo "::error::dist/index.html was not generated."
+            exit 1
+          fi
+
+          echo "Web build verified successfully."
+
+      # 6. Configure Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'zulu'
-          cache: 'gradle'
+          distribution: zulu
+          cache: gradle
 
-      # No need to install @capacitor/filesystem – it's already in package.json
+      # 7. Sync Capacitor with Android
       - name: Capacitor Sync
         run: npx cap sync android
 
-      # ---------- Verify Capacitor copied files ----------
+      # 8. Verify Capacitor copied the web files
       - name: Verify Capacitor copy
+        shell: bash
         run: |
-          ls -la android/app/src/main/assets/public/
-          test -f android/app/src/main/assets/public/index.html && echo "✅ Copied successfully" || echo "❌ NOT copied!"
+          set -e
 
+          ASSETS="android/app/src/main/assets/public"
+
+          if [ ! -f "$ASSETS/index.html" ]; then
+            echo "::error::Capacitor did not copy index.html into the Android assets directory."
+            echo "Contents of the expected directory:"
+            ls -la "$ASSETS" || true
+            exit 1
+          fi
+
+          ls -la "$ASSETS/"
+          echo "Capacitor web assets verified successfully."
+
+      # 9. Make Gradle executable
       - name: Grant Gradle execute permission
         run: chmod +x android/gradlew
 
+      # 10. Build the Android debug APK
       - name: Build Debug APK
-        run: cd android && ./gradlew assembleDebug --stacktrace
+        working-directory: android
+        run: ./gradlew assembleDebug --stacktrace --no-daemon
 
-      - name: Rename APK to DevsLibrary.apk
-        run: mv android/app/build/outputs/apk/debug/app-debug.apk android/app/build/outputs/apk/debug/HyecodeEditor.apk
+      # 11. Verify and rename the APK
+      - name: Prepare APK
+        shell: bash
+        run: |
+          set -e
 
-      - name: Upload APK as artifact
+          APK="android/app/build/outputs/apk/debug/app-debug.apk"
+          OUTPUT="android/app/build/outputs/apk/debug/DevsLibrary.apk"
+
+          if [ ! -f "$APK" ]; then
+            echo "::error::Gradle finished without generating the expected debug APK."
+            find android -type f -name "*.apk" -print || true
+            exit 1
+          fi
+
+          mv "$APK" "$OUTPUT"
+
+          echo "APK generated successfully:"
+          ls -lh "$OUTPUT"
+
+      # 12. Upload the APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: HyecodeEditor
-          path: android/app/build/outputs/apk/debug/HyecodeEditor.apk
-
-      
+          name: DevsLibrary
+          path: android/app/build/outputs/apk/debug/DevsLibrary.apk
+          if-no-files-found: error
+          retention-days: 14
