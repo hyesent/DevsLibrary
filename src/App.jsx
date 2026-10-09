@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -10,6 +10,7 @@ import {
 import { Capacitor } from '@capacitor/core';
 import { App as CapApp } from '@capacitor/app';
 
+import OpeningScreen from './OpeningScreen.jsx';
 import Layout from './components/Layout.jsx';
 import Lesson from './components/Lesson.jsx';
 import { Home, Book, Lists, Glossary } from './components/Modals.jsx';
@@ -42,13 +43,12 @@ function BackButtonHandler() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Scroll to top on route change (unless lesson restore kicks in)     */
+/* Scroll to top on route change (lesson handles its own)             */
 /* ------------------------------------------------------------------ */
 function ScrollReset() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Lesson page handles its own scroll restore, so skip there
     if (pathname.startsWith('/book/') && pathname.split('/').length === 4) return;
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -60,29 +60,34 @@ function ScrollReset() {
 /* App                                                                */
 /* ------------------------------------------------------------------ */
 export default function App() {
-  // apply saved theme + font size on boot
+  const [showOpening, setShowOpening] = useState(true);
+
   useEffect(() => {
     applyTheme(getTheme());
     applyFontSize(getFontSize());
   }, []);
 
   return (
-    <BrowserRouter>
-      <BackButtonHandler />
-      <ScrollReset />
+    <>
+      {showOpening && <OpeningScreen onFinish={() => setShowOpening(false)} />}
 
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/book/:bookId" element={<Book />} />
-          <Route path="/book/:bookId/:lessonId" element={<Lesson />} />
-          <Route path="/favourites" element={<Lists type="favourite" />} />
-          <Route path="/bookmarks" element={<Lists type="bookmark" />} />
-          <Route path="/notes" element={<Lists type="note" />} />
-          <Route path="/glossary" element={<Glossary />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+      <BrowserRouter>
+        <BackButtonHandler />
+        <ScrollReset />
+
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/book/:bookId" element={<Book />} />
+            <Route path="/book/:bookId/:lessonId" element={<Lesson />} />
+            <Route path="/favourites" element={<Lists type="favourite" />} />
+            <Route path="/bookmarks" element={<Lists type="bookmark" />} />
+            <Route path="/notes" element={<Lists type="note" />} />
+            <Route path="/glossary" element={<Glossary />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </>
   );
 }
