@@ -1,134 +1,61 @@
-name: Build Android APK
+name: Android APK Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   build:
-    name: Build DevsLibrary Debug APK
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    permissions:
+      contents: write   # Needed to update the latest release
 
     steps:
-      # 1. Checkout source code
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2. Configure Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
-      # 3. Verify required project files
-      - name: Verify project files
-        shell: bash
+      - run: npm ci
+
+      # ---------- Verify build output (debug) ----------
+      - name: Verify dist folder
         run: |
-          set -e
+          ls -la dist/
+          test -f dist/index.html && echo "✅ dist/index.html found" || (echo "❌ dist/index.html MISSING" && exit 1)
 
-          test -f package.json || {
-            echo "::error::package.json not found."
-            exit 1
-          }
-
-          test -d android || {
-            echo "::error::Android project directory not found."
-            exit 1
-          }
-
-          test -f android/gradlew || {
-            echo "::error::Gradle wrapper not found."
-            exit 1
-          }
-
-          echo "Required project files found."
-
-      # 4. Install JavaScript dependencies
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            echo "::error::package-lock.json is missing. Commit your npm lockfile for reproducible builds."
-            exit 1
-          fi
-
-      # 5. Build the web application
-      - name: Build web app
-        run: npm run build
-
-      # 6. Configure Java
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
-          distribution: temurin
           java-version: '21'
+          distribution: 'zulu'
+          cache: 'gradle'
 
-      # 7. Configure Android SDK and install required packages
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: |
-            platform-tools
-            platforms;android-34
-            build-tools;34.0.0
-
-      # 8. Sync the web application with Android
-      - name: Sync Capacitor
+      # No need to install @capacitor/filesystem – it's already in package.json
+      - name: Capacitor Sync
         run: npx cap sync android
 
-      # 9. Make Gradle wrapper executable
-      - name: Make Gradle wrapper executable
+      # ---------- Verify Capacitor copied files ----------
+      - name: Verify Capacitor copy
+        run: |
+          ls -la android/app/src/main/assets/public/
+          test -f android/app/src/main/assets/public/index.html && echo "✅ Copied successfully" || echo "❌ NOT copied!"
+
+      - name: Grant Gradle execute permission
         run: chmod +x android/gradlew
 
-      # 10. Build the debug APK
       - name: Build Debug APK
-        working-directory: android
-        run: ./gradlew assembleDebug --no-daemon
+        run: cd android && ./gradlew assembleDebug --stacktrace
 
-      # 11. Verify the APK exists
-      - name: Verify APK
-        shell: bash
-        run: |
-          APK="android/app/build/outputs/apk/debug/app-debug.apk"
+      - name: Rename APK to DevsLibrary.apk
+        run: mv android/app/build/outputs/apk/debug/app-debug.apk android/app/build/outputs/apk/debug/HyecodeEditor.apk
 
-          if [ ! -f "$APK" ]; then
-            echo "::error::Debug APK was not generated."
-            echo "Searching for generated APK files..."
-            find android -type f -name "*.apk" -print || true
-            exit 1
-          fi
-
-          echo "APK generated successfully."
-          ls -lh "$APK"
-
-      # 12. Rename and prepare the APK
-      - name: Prepare APK artifact
-        shell: bash
-        run: |
-          set -e
-
-          mkdir -p build-artifacts
-
-          VERSION=$(node -p "require('./package.json').version")
-
-          cp android/app/build/outputs/apk/debug/app-debug.apk \
-            "build-artifacts/DevsLibrary-${VERSION}-debug.apk"
-
-          echo "Prepared APK:"
-          ls -lh build-artifacts/
-
-      # 13. Upload the APK for download
-      - name: Upload APK artifact
+      - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: DevsLibrary-Android-APK
-          path: build-artifacts/*.apk
-          if-no-files-found: error
-          retention-days: 14
+          name: HyecodeEditor
+          path: android/app/build/outputs/apk/debug/HyecodeEditor.apk
+
+      
