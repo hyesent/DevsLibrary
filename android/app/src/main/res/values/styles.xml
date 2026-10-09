@@ -17,6 +17,10 @@
 
 
     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
-        <item name="android:background">@drawable/splash</item>
+        <!-- Android requires a native launch surface; keep it visually continuous with the web intro. -->
+        <item name="windowSplashScreenBackground">#0b0f17</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_wordmark</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+        <item name="android:windowBackground">#0b0f17</item>
     </style>
 </resources>
