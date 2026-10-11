@@ -1,0 +1,17 @@
+{
+  "title": "Cryptography Fundamentals",
+  "tagline": "Understand the security properties, mathematics, primitives, protocols, and operational choices behind modern cryptography.",
+  "summary": "A deep, engineering-oriented textbook covering threat models, randomness, symmetric and public-key cryptography, hashes, password storage, key derivation, signatures, TLS, key management, side channels, post-quantum migration, testing, and real-world architecture reviews.",
+  "topics": [
+    "cryptography",
+    "security engineering",
+    "symmetric encryption",
+    "public-key cryptography",
+    "hashing",
+    "key management",
+    "TLS",
+    "post-quantum"
+  ],
+  "icon": "key-round",
+  "order": 32
+}

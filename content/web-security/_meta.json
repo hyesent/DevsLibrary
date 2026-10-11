@@ -1,0 +1,19 @@
+{
+  "title": "Web Security",
+  "tagline": "Understand, design, test, and operate secure web systems",
+  "summary": "A broad, defense-oriented textbook covering browser security, identity, authorization, common vulnerability classes, APIs, data protection, infrastructure, supply chains, secure development, testing, monitoring, and incident response. Each lesson connects the threat model to the failure mechanism, practical defenses, trade-offs, and verification.",
+  "topics": [
+    "Security principles, threat modeling, assets, and trust boundaries",
+    "HTTP, origins, cookies, CORS, CSP, TLS, and browser isolation",
+    "Authentication, sessions, MFA, OAuth 2.0, and OpenID Connect",
+    "Authorization, tenant isolation, BOLA, and business-logic abuse",
+    "Injection, XSS, CSRF, SSRF, traversal, uploads, and parser differentials",
+    "API, GraphQL, webhook, WebSocket, and service-to-service security",
+    "Cryptographic hygiene, secrets, databases, privacy, and audit trails",
+    "Cloud, containers, configuration, dependencies, and build integrity",
+    "Security testing, vulnerability management, monitoring, and incident response",
+    "Architecture review and secure document-sharing capstone"
+  ],
+  "icon": "shield-check",
+  "order": 31
+}

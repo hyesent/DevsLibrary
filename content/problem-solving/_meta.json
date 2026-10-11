@@ -1,0 +1,30 @@
+{
+  "title": "Problem Solving",
+  "tagline": "Turn unfamiliar problems into clear models, reliable solutions, and better decisions",
+  "summary": "A deep, language-independent textbook on the reasoning process behind solving problems in software and beyond: clarifying requirements, modeling state, decomposing complexity, designing algorithms, proving correctness, testing adversarial cases, debugging, evaluating trade-offs, communicating solutions, and learning systematically from failure. It distinguishes problem solving from syntax memorization and connects the method to data structures, architecture, APIs, databases, and production engineering.",
+  "topics": [
+    "Problem statements, requirements, and success criteria",
+    "Constraints, assumptions, and ambiguity",
+    "Input-output contracts and invariants",
+    "Abstraction, modeling, and representation",
+    "Decomposition and managing complexity",
+    "Examples, counterexamples, and boundary cases",
+    "Brute-force baselines and refinement",
+    "Choosing data representations",
+    "Algorithm design strategies",
+    "Correctness arguments and proof sketches",
+    "Complexity and resource budgets",
+    "Testing as a reasoning tool",
+    "Debugging and causal diagnosis",
+    "State machines and event-driven reasoning",
+    "Greedy choices, recursion, and dynamic programming",
+    "Search, pruning, and constraint solving",
+    "Working with unfamiliar systems and documentation",
+    "Decision-making under uncertainty",
+    "Communication, review, and collaboration",
+    "Learning from mistakes and building reusable intuition",
+    "Capstone problem-solving workflows"
+  ],
+  "icon": "brain",
+  "order": 27
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Vite & Build Tools",
+  "tagline": "A practical guide to modern frontend build pipelines, Vite, modules, assets, plugins, production output, testing, performance, and secure delivery",
+  "summary": "A practical guide to modern frontend build pipelines, Vite, modules, assets, plugins, production output, testing, performance, and secure delivery.",
+  "topics": [
+    "Vite",
+    "Build Tools",
+    "JavaScript",
+    "TypeScript",
+    "Bundling",
+    "Frontend"
+  ],
+  "icon": "wrench",
+  "order": 29
+}

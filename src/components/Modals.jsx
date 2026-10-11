@@ -29,9 +29,10 @@ const S = {
 const IconBook     = () => <svg {...S}><path d="M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 4v13"/></svg>;
 const IconGlossary = () => <svg {...S}><path d="M4 5h7a3 3 0 0 1 3 3v11"/><path d="M20 5h-7a3 3 0 0 0-3 3v11"/></svg>;
 const IconArrow    = () => <svg {...S}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>;
+const IconCode     = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/><line x1="14" y1="5" x2="10" y2="19"/></svg>;
 
 /* ------------------------------------------------------------ */
-/* LOGO MARK — italic + subtle cut-through                      */
+/* LOGO MARK                                                    */
 /* ------------------------------------------------------------ */
 function Logo({ size = 'md' }) {
   return (
@@ -51,12 +52,27 @@ export function Home() {
 
   return (
     <div className="page">
-      {/* ------------------- LOGO CARD ------------------- */}
       <header className="logo-card">
         <Logo size="lg" />
       </header>
 
-      {/* ------------------- BOOKS (primary) ------------------- */}
+      {/* ------------------- DEVSLAB CARD ------------------- */}
+      <section className="section devslab-section">
+        <Link to="/lab" className="devslab-card">
+          <div className="devslab-card-icon">
+            <IconCode />
+          </div>
+          <div className="devslab-card-text">
+            <h3 className="devslab-card-title">DevsLab</h3>
+            <p className="devslab-card-about">
+              Write, run, and preview code right here — offline.
+            </p>
+          </div>
+          <span className="devslab-card-arrow"><IconArrow /></span>
+        </Link>
+      </section>
+
+      {/* ------------------- BOOKS ------------------- */}
       <section className="section books-section">
         <h2 className="section-title">Books</h2>
         <div className="book-grid">
@@ -71,7 +87,7 @@ export function Home() {
         )}
       </section>
 
-      {/* ------------------- RECENTLY READ (empty state) ------------------- */}
+      {/* ------------------- RECENTLY READ ------------------- */}
       <section className="section recent-section">
         <h2 className="section-title">Recently read</h2>
         {recent.length === 0 ? (
@@ -101,7 +117,7 @@ export function Home() {
         )}
       </section>
 
-      {/* ------------------- GLOSSARY (tertiary) ------------------- */}
+      {/* ------------------- GLOSSARY ------------------- */}
       <section className="section glossary-section">
         <Link to="/glossary" className="shortcut">
           <span className="shortcut-icon"><IconGlossary /></span>
@@ -180,7 +196,6 @@ export function Book() {
 
   return (
     <div className="page">
-      {/* ------------------- COVER ------------------- */}
       <section className="book-cover">
         <h1 className="book-title">{book.title}</h1>
         {book.summary && <p className="book-summary">{book.summary}</p>}
@@ -209,7 +224,6 @@ export function Book() {
         )}
       </section>
 
-      {/* ------------------- LESSON LIST ------------------- */}
       <section className="section">
         <h2 className="section-title">Lessons</h2>
         <ol className="lesson-list">
@@ -232,7 +246,7 @@ export function Book() {
 }
 
 /* ============================================================= */
-/* LISTS — Favourites / Bookmarks / Notes                        */
+/* LISTS                                                         */
 /* ============================================================= */
 
 export function Lists({ type }) {
@@ -300,7 +314,7 @@ export function Lists({ type }) {
                   <span className="list-row-book muted small">{book.title}</span>
                   {g.items[0]?.text && (
                     <span className="list-row-note">
-                      “{g.items[0].text}”
+                      "{g.items[0].text}"
                       {noteCount > 1 && (
                         <span className="muted small"> ({noteCount} notes)</span>
                       )}

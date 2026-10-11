@@ -1,0 +1,18 @@
+{
+  "title": "Cryptography — Advanced Theory and Engineering",
+  "tagline": "Go beyond the fundamentals into security proofs, advanced constructions, cryptanalysis, privacy-preserving computation, side channels, and production cryptographic architecture.",
+  "summary": "An advanced continuation of Cryptography Fundamentals. It explores provable-security models, multi-user bounds, AEAD internals, commitments, zero-knowledge proofs, MPC, homomorphic and searchable encryption, threshold cryptography, differential privacy, post-quantum migration, cryptanalysis, formal verification, protocol analysis, and end-to-end architecture reviews.",
+  "topics": [
+    "advanced cryptography",
+    "provable security",
+    "cryptanalysis",
+    "zero-knowledge proofs",
+    "MPC",
+    "homomorphic encryption",
+    "threshold cryptography",
+    "post-quantum cryptography",
+    "privacy engineering"
+  ],
+  "icon": "shield-check",
+  "order": 38
+}

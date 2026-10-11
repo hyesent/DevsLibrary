@@ -1,62 +1,126 @@
-name: Build Android APK
+name: Android APK Build
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
-    name: Build Debug APK
+    name: Build DevsLibrary APK
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     steps:
+      # 1. Download the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Configure Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
+          cache: npm
 
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
 
+      # 4. Build the web application
       - name: Build web app
         run: npm run build
 
-      - name: Add Android platform
-        run: npx cap add android
+      # 5. Verify web build output
+      - name: Verify web build output
+        shell: bash
+        run: |
+          set -e
 
-      - name: Sync Capacitor
-        run: npx cap sync android
+          if [ ! -d dist ]; then
+            echo "::error::The dist directory was not created by npm run build."
+            echo "Checking available project directories:"
+            ls -la
+            exit 1
+          fi
 
+          ls -la dist/
+
+          if [ ! -f dist/index.html ]; then
+            echo "::error::dist/index.html was not generated."
+            exit 1
+          fi
+
+          echo "Web build verified successfully."
+
+      # 6. Configure Java
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
           java-version: '21'
+          distribution: zulu
+          cache: gradle
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      # 7. Sync Capacitor with Android
+      - name: Capacitor Sync
+        run: npx cap sync android
 
-      - name: Make gradlew executable
+      # 8. Verify Capacitor copied the web files
+      - name: Verify Capacitor copy
+        shell: bash
+        run: |
+          set -e
+
+          ASSETS="android/app/src/main/assets/public"
+
+          if [ ! -f "$ASSETS/index.html" ]; then
+            echo "::error::Capacitor did not copy index.html into the Android assets directory."
+            echo "Contents of the expected directory:"
+            ls -la "$ASSETS" || true
+            exit 1
+          fi
+
+          ls -la "$ASSETS/"
+          echo "Capacitor web assets verified successfully."
+
+      # 9. Make Gradle executable
+      - name: Grant Gradle execute permission
         run: chmod +x android/gradlew
 
+      # 10. Build the Android debug APK
       - name: Build Debug APK
         working-directory: android
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --stacktrace --no-daemon
 
-      - name: Rename APK
+      # 11. Verify and rename the APK
+      - name: Prepare APK
+        shell: bash
         run: |
-          mkdir -p build-artifacts
-          VERSION=$(node -p "require('./package.json').version")
-          cp android/app/build/outputs/apk/debug/app-debug.apk \
-             "build-artifacts/DevsLibrary-${VERSION}.apk"
+          set -e
 
+          APK="android/app/build/outputs/apk/debug/app-debug.apk"
+          OUTPUT="android/app/build/outputs/apk/debug/DevsLibrary.apk"
+
+          if [ ! -f "$APK" ]; then
+            echo "::error::Gradle finished without generating the expected debug APK."
+            find android -type f -name "*.apk" -print || true
+            exit 1
+          fi
+
+          mv "$APK" "$OUTPUT"
+
+          echo "APK generated successfully:"
+          ls -lh "$OUTPUT"
+
+      # 12. Upload the APK
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: DevsLibrary
-          path: build-artifacts/*.apk
+          path: android/app/build/outputs/apk/debug/DevsLibrary.apk
+          if-no-files-found: error
+          retention-days: 14

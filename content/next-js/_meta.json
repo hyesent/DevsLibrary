@@ -1,0 +1,15 @@
+{
+  "title": "Next.js",
+  "tagline": "A practical guide to understand Next",
+  "summary": "A practical guide to the Next.js App Router, routing, rendering, data, caching, security, deployment, and production design.",
+  "topics": [
+    "Next.js",
+    "React",
+    "App Router",
+    "Server Components",
+    "Full-Stack",
+    "Web Development"
+  ],
+  "icon": "layers",
+  "order": 28
+}

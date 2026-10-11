@@ -1,21 +1,7 @@
 {
-  "id": "devslibrary_backend_architecture_v3",
   "title": "Backend Architecture — Deep-Dive Edition",
-  "version": "3.0.0",
-  "language": "en",
-  "format": "markdown",
-  "lesson_count": 24,
-  "tracks": [
-    "Foundations",
-    "Core Design",
-    "Edge Computing",
-    "Security",
-    "Production",
-    "Data Architecture",
-    "Advanced",
-    "Practice",
-    "Capstone"
-  ],
+  "tagline": "A comprehensive textbook on Backend Architecture — Deep-Dive Edition",
+  "summary": "A comprehensive textbook on Backend Architecture — Deep-Dive Edition.",
   "topics": [
     "backend architecture",
     "modular monolith",
@@ -34,5 +20,6 @@
     "multi-region systems",
     "system evolution"
   ],
-  "notes": "Single-book package. Provider-specific limits and features must be checked against current provider documentation before production use."
+  "icon": "network",
+  "order": 19
 }

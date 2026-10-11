@@ -1,43 +1,44 @@
 /* ================================================================== */
-/* DevsLibrary — STORAGE                                                    */
-/* Everything that touches localStorage lives here.                     */
-/* Keys are namespaced `DevsLibrary:*` so we never collide with anything.   */
+/* DEVSLIBRARY — STORAGE                                               */
 /* ================================================================== */
 
 const KEYS = {
-  theme: 'DevsLibrary:theme',
-  fontSize: 'DevsLibrary:font-size',
-  lastRead: 'DevsLibrary:last-read',
-  readLessons: 'DevsLibrary:read-lessons',
-  items: 'DevsLibrary:items',       // notes + bookmarks + favourites
-  highlights: 'DevsLibrary:highlights',
-  recentRead: 'DevsLibrary:recent-read',
+  theme: 'devslibrary:theme',
+  fontSize: 'devslibrary:font-size',
+  showHighlights: 'devslibrary:show-highlights',
+  lastRead: 'devslibrary:last-read',
+  readLessons: 'devslibrary:read-lessons',
+  items: 'devslibrary:items',
+  highlights: 'devslibrary:highlights',
+  recentRead: 'devslibrary:recent-read',
 };
 
-/* ----------------------------- helpers ---------------------------- */
+const LAB_SAVES_KEY = 'devslibrary:lab:saves';
+const LAB_HISTORY_KEY = 'devslibrary:lab:history';
+const LAB_DRAFT_PREFIX = 'devslibrary:lab:draft:';
+const LAB_SETTINGS_KEY = 'devslibrary:lab:settings';
+
+/* --------------------------- helpers ----------------------------- */
 
 function read(key, fallback) {
   try {
     const raw = localStorage.getItem(key);
     if (raw === null) return fallback;
     return JSON.parse(raw);
-  } catch {
-    return fallback;
-  }
+  } catch { return fallback; }
 }
 
 function write(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch {
-    /* quota or private mode — fail silently */
-  }
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
 }
 
 function remove(key) {
-  try {
-    localStorage.removeItem(key);
-  } catch {}
+  try { localStorage.removeItem(key); } catch {}
+}
+
+/* shared id generator — used by items, highlights, lab saves, lab history */
+function makeId(prefix = 'id') {
+  return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
 /* =============================== THEME ============================= */
@@ -64,11 +65,8 @@ export function applyTheme(theme) {
 
 /* ============================ FONT SIZE ============================ */
 
-// Smooth slider: 0 → S, 50 → M, 100 → L
-// Font size in rem, interpolated.
-
-const FONT_MIN = 0.95;   // rem  (S)
-const FONT_MAX = 1.25;   // rem  (L)
+const FONT_MIN = 0.95;
+const FONT_MAX = 1.25;
 
 export function getFontSize() {
   const v = read(KEYS.fontSize, 50);
@@ -87,14 +85,24 @@ export function applyFontSize(value) {
   document.documentElement.style.setProperty('--reader-font-size', `${rem}rem`);
 }
 
-/* ============================ LAST READ ============================ */
+/* ========================= SHOW HIGHLIGHTS ========================= */
 
-export function getLastRead() {
-  return read(KEYS.lastRead, null);
+export function getShowHighlights() {
+  return read(KEYS.showHighlights, true);
 }
 
+export function setShowHighlights(v) {
+  write(KEYS.showHighlights, !!v);
+  try {
+    window.dispatchEvent(new CustomEvent('dsl:show-highlights-changed'));
+  } catch {}
+}
+
+/* ============================ LAST READ ============================ */
+
+export function getLastRead() { return read(KEYS.lastRead, null); }
+
 export function saveLastRead(data) {
-  // data: { bookId, lessonId, scrollY }
   write(KEYS.lastRead, { ...data, updatedAt: Date.now() });
 }
 
@@ -104,17 +112,13 @@ export function updateLastReadScroll(scrollY) {
   write(KEYS.lastRead, { ...current, scrollY, updatedAt: Date.now() });
 }
 
-export function clearLastRead() {
-  remove(KEYS.lastRead);
-}
+export function clearLastRead() { remove(KEYS.lastRead); }
 
 /* ========================== RECENT READ ============================ */
 
 const RECENT_LIMIT = 5;
 
-export function getRecentRead() {
-  return read(KEYS.recentRead, []);
-}
+export function getRecentRead() { return read(KEYS.recentRead, []); }
 
 export function pushRecentRead({ bookId, lessonId }) {
   const list = getRecentRead();
@@ -127,13 +131,10 @@ export function pushRecentRead({ bookId, lessonId }) {
 
 /* =========================== READ LESSONS ========================== */
 
-export function getReadLessons() {
-  return read(KEYS.readLessons, []);
-}
+export function getReadLessons() { return read(KEYS.readLessons, []); }
 
 export function isLessonRead(bookId, lessonId) {
-  const list = getReadLessons();
-  return list.includes(`${bookId}/${lessonId}`);
+  return getReadLessons().includes(`${bookId}/${lessonId}`);
 }
 
 export function markLessonRead(bookId, lessonId) {
@@ -158,25 +159,8 @@ export function countReadInBook(bookId, totalLessons) {
 }
 
 /* =============================== ITEMS ============================= */
-/* Notes + bookmarks + favourites — one list, tagged.                 */
-/*                                                                     */
-/* item = {                                                            */
-/*   id: string,                                                       */
-/*   type: 'note' | 'bookmark' | 'favourite',                          */
-/*   scope: 'book' | 'lesson',                                         */
-/*   bookId: string,                                                   */
-/*   lessonId?: string,                                                */
-/*   text?: string,          // notes only                             */
-/*   createdAt: number,                                                */
-/* }                                                                   */
 
-function makeId() {
-  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-}
-
-export function getAllItems() {
-  return read(KEYS.items, []);
-}
+export function getAllItems() { return read(KEYS.items, []); }
 
 export function getItemsByType(type) {
   return getAllItems().filter((i) => i.type === type);
@@ -201,12 +185,10 @@ export function hasItem({ type, scope, bookId, lessonId }) {
   );
 }
 
-/* --- add --- */
-
 export function addNote({ scope, bookId, lessonId, text }) {
   if (!text || !text.trim()) return null;
   const item = {
-    id: makeId(),
+    id: makeId('note'),
     type: 'note',
     scope,
     bookId,
@@ -223,7 +205,7 @@ export function addNote({ scope, bookId, lessonId, text }) {
 export function addBookmark({ scope, bookId, lessonId }) {
   if (hasItem({ type: 'bookmark', scope, bookId, lessonId })) return null;
   const item = {
-    id: makeId(),
+    id: makeId('bm'),
     type: 'bookmark',
     scope,
     bookId,
@@ -239,7 +221,7 @@ export function addBookmark({ scope, bookId, lessonId }) {
 export function addFavourite({ scope, bookId, lessonId }) {
   if (hasItem({ type: 'favourite', scope, bookId, lessonId })) return null;
   const item = {
-    id: makeId(),
+    id: makeId('fav'),
     type: 'favourite',
     scope,
     bookId,
@@ -252,8 +234,6 @@ export function addFavourite({ scope, bookId, lessonId }) {
   return item;
 }
 
-/* --- remove --- */
-
 export function removeItemById(id) {
   const list = getAllItems();
   write(KEYS.items, list.filter((i) => i.id !== id));
@@ -261,41 +241,25 @@ export function removeItemById(id) {
 
 export function removeBookmark({ scope, bookId, lessonId }) {
   const list = getAllItems();
-  write(
-    KEYS.items,
-    list.filter(
-      (i) =>
-        !(
-          i.type === 'bookmark' &&
-          i.scope === scope &&
-          i.bookId === bookId &&
-          (scope === 'book' || i.lessonId === lessonId)
-        )
-    )
-  );
+  write(KEYS.items, list.filter((i) => !(
+    i.type === 'bookmark' &&
+    i.scope === scope &&
+    i.bookId === bookId &&
+    (scope === 'book' || i.lessonId === lessonId)
+  )));
 }
 
 export function removeFavourite({ scope, bookId, lessonId }) {
   const list = getAllItems();
-  write(
-    KEYS.items,
-    list.filter(
-      (i) =>
-        !(
-          i.type === 'favourite' &&
-          i.scope === scope &&
-          i.bookId === bookId &&
-          (scope === 'book' || i.lessonId === lessonId)
-        )
-    )
-  );
+  write(KEYS.items, list.filter((i) => !(
+    i.type === 'favourite' &&
+    i.scope === scope &&
+    i.bookId === bookId &&
+    (scope === 'book' || i.lessonId === lessonId)
+  )));
 }
 
 /* ============================ HIGHLIGHTS =========================== */
-
-/* highlight = {                                                       */
-/*   id, bookId, lessonId, text, createdAt,                            */
-/* }                                                                   */
 
 export function getHighlights({ bookId, lessonId } = {}) {
   const list = read(KEYS.highlights, []);
@@ -309,14 +273,17 @@ export function getHighlights({ bookId, lessonId } = {}) {
 
 export function addHighlight({ bookId, lessonId, text }) {
   if (!text || !text.trim()) return null;
+  const list = read(KEYS.highlights, []);
+  if (list.some((h) => h.bookId === bookId && h.lessonId === lessonId && h.text === text.trim())) {
+    return null;
+  }
   const item = {
-    id: makeId(),
+    id: makeId('hl'),
     bookId,
     lessonId,
     text: text.trim(),
     createdAt: Date.now(),
   };
-  const list = read(KEYS.highlights, []);
   list.push(item);
   write(KEYS.highlights, list);
   return item;
@@ -327,9 +294,141 @@ export function removeHighlight(id) {
   write(KEYS.highlights, list.filter((h) => h.id !== id));
 }
 
+/* ========================== LAB — DRAFTS =========================== */
+
+export function getLabDraft(mode) {
+  return read(`${LAB_DRAFT_PREFIX}${mode}`, null);
+}
+
+export function setLabDraft(mode, code) {
+  write(`${LAB_DRAFT_PREFIX}${mode}`, code);
+}
+
+export function clearLabDraft(mode) {
+  remove(`${LAB_DRAFT_PREFIX}${mode}`);
+}
+
+/* ========================== LAB — SAVES ============================ */
+
+export function getLabSaves(mode) {
+  const all = read(LAB_SAVES_KEY, []);
+  return mode ? all.filter((s) => s.mode === mode) : all;
+}
+
+export function getLabSave(id) {
+  return read(LAB_SAVES_KEY, []).find((s) => s.id === id) || null;
+}
+
+export function addLabSave({ name, mode, code }) {
+  const saves = read(LAB_SAVES_KEY, []);
+  const save = {
+    id: makeId('save'),
+    name: name || 'Untitled',
+    mode,
+    code,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  };
+  saves.unshift(save);
+  write(LAB_SAVES_KEY, saves);
+  return save;
+}
+
+export function updateLabSave(id, code) {
+  const saves = read(LAB_SAVES_KEY, []);
+  const idx = saves.findIndex((s) => s.id === id);
+  if (idx === -1) return null;
+  saves[idx] = { ...saves[idx], code, updatedAt: Date.now() };
+  write(LAB_SAVES_KEY, saves);
+  return saves[idx];
+}
+
+export function renameLabSave(id, name) {
+  const saves = read(LAB_SAVES_KEY, []);
+  const idx = saves.findIndex((s) => s.id === id);
+  if (idx === -1) return null;
+  saves[idx] = { ...saves[idx], name, updatedAt: Date.now() };
+  write(LAB_SAVES_KEY, saves);
+  return saves[idx];
+}
+
+export function deleteLabSave(id) {
+  const saves = read(LAB_SAVES_KEY, []);
+  write(LAB_SAVES_KEY, saves.filter((s) => s.id !== id));
+  const history = read(LAB_HISTORY_KEY, []);
+  write(LAB_HISTORY_KEY, history.filter((h) => h.saveId !== id));
+}
+
+/* ========================== LAB — HISTORY ========================== */
+
+const HISTORY_CAP_PER_KEY = 50;
+
+export function getLabHistory(key) {
+  const all = read(LAB_HISTORY_KEY, []);
+  if (!key) return all;
+  return all.filter((h) => h.key === key);
+}
+
+export function pushLabHistory({ mode, saveId, code }) {
+  const key = saveId || `mode:${mode}`;
+  const history = read(LAB_HISTORY_KEY, []);
+  const last = history.find((h) => h.key === key);
+  if (last && last.code === code) return null;
+
+  const entry = {
+    id: makeId('hist'),
+    key,
+    mode,
+    saveId: saveId || null,
+    code,
+    createdAt: Date.now(),
+  };
+  history.unshift(entry);
+
+  const counts = {};
+  const trimmed = [];
+  for (const h of history) {
+    counts[h.key] = (counts[h.key] || 0) + 1;
+    if (counts[h.key] <= HISTORY_CAP_PER_KEY) trimmed.push(h);
+  }
+  write(LAB_HISTORY_KEY, trimmed);
+  return entry;
+}
+
+export function deleteLabHistory(id) {
+  const history = read(LAB_HISTORY_KEY, []);
+  write(LAB_HISTORY_KEY, history.filter((h) => h.id !== id));
+}
+
+export function clearLabHistory(key) {
+  const history = read(LAB_HISTORY_KEY, []);
+  write(LAB_HISTORY_KEY, history.filter((h) => h.key !== key));
+}
+
+/* ========================= LAB — SETTINGS ========================== */
+
+export function getLabSettings() {
+  return read(LAB_SETTINGS_KEY, { saveMode: 'manual' });
+}
+
+export function setLabSettings(settings) {
+  write(LAB_SETTINGS_KEY, settings);
+}
+
 /* ============================ WIPE ALL ============================= */
-/* Not exposed in UI (user said no), but useful for dev/testing.       */
 
 export function wipeAll() {
   Object.values(KEYS).forEach(remove);
+  remove(LAB_SAVES_KEY);
+  remove(LAB_HISTORY_KEY);
+  remove(LAB_SETTINGS_KEY);
+  // drafts share a prefix — sweep all localStorage keys starting with it
+  try {
+    const toRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith(LAB_DRAFT_PREFIX)) toRemove.push(k);
+    }
+    toRemove.forEach(remove);
+  } catch {}
 }

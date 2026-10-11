@@ -1,0 +1,21 @@
+# Glossary
+
+- **App Router:** Routing system based on `app/` and React Server Components.
+- **Pages Router:** Original routing system based on `pages/`.
+- **Server Component:** Component rendered on the server in the framework flow.
+- **Client Component:** Component marked for client-side interactivity, usually with `'use client'`.
+- **Hydration:** Connecting client-side React behavior to server-rendered HTML.
+- **Route segment:** A level of the route tree represented by a folder.
+- **Layout:** Shared UI wrapping child routes.
+- **Route Handler:** HTTP endpoint implemented in `route.ts`.
+- **Server Action:** Server function callable through supported React/Next.js mechanisms.
+- **Proxy:** Current request-interception convention; older releases used Middleware naming.
+- **Prerendering:** Producing HTML before an individual request, often at build or revalidation time.
+- **Revalidation:** Invalidating or refreshing cached data or route output.
+- **Streaming:** Sending ready parts of a response before all work finishes.
+- **Suspense:** React mechanism for showing fallback UI while a child waits.
+- **Metadata:** Page information such as title, description, and social preview tags.
+- **CSRF:** Cross-Site Request Forgery, inducing a victim's browser to make an unwanted authenticated request.
+- **XSS:** Cross-Site Scripting, where untrusted content causes script execution in a user's browser.
+- **Open redirect:** Redirect endpoint that accepts an untrusted destination.
+- **Core Web Vitals:** User-experience metrics including LCP, INP, and CLS.
